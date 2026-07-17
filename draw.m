@@ -5,7 +5,7 @@ save("data.mat", "data")
 
 % 解析时间戳
 t = datetime(data.timestamp);
-
+% nihao
 % 计算净化量（入口浓度 g/Nm³ - 出口浓度 mg/Nm³ 转 g/Nm³）
 dC = data.C_in_gNm3 - data.C_out_mgNm3 / 1000;
 data.dC = dC;
