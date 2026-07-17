@@ -1,0 +1,2347 @@
+% ============================================================
+%  fulu.tex — 支撑材料附录
+%  由主文件 \input{fulu} 引入，需 listings 宏包
+% ============================================================
+
+% ============================================================
+\section*{附录A\quad 文件列表}
+% ============================================================
+ 
+支撑材料包含 MATLAB 脚本文件、函数文件与数据文件，清单如表~\ref{tab:filelist} 所示。
+
+\begin{table}[htbp]
+\centering
+\caption{支撑材料文件清单}
+\label{tab:filelist}
+\small
+\begin{tabular}{lll}
+\toprule
+文件类型 & 文件名称 & 功能 \\
+\midrule
+MATLAB 脚本文件 & \verb|draw.m| & 读取 CSV 并作各变量时序图 \\
+MATLAB 脚本文件 & \verb|clean.m| & 数据清洗 \\
+数据文件 & \verb|dc.csv| & 清洗后的数据表 \\
+MATLAB 脚本文件 & \verb|pro1_quali.m| & 正态性检验与 Spearman 相关矩阵 \\
+数据文件 & \verb|pro1_quali_spearman.csv| & Spearman 秩相关系数矩阵 \\
+数据文件 & \verb|pro1_quali_spearman_p.csv| & Spearman $p$ 值矩阵 \\
+MATLAB 脚本文件 & \verb|pro1.m| & 各变量时序变化规律拟合 \\
+MATLAB 函数文件 & \verb|writeCorrCSV.m| & 相关系数矩阵写入 CSV 表 \\
+MATLAB 函数文件 & \verb|saveCurrent.m| & 保存图窗为 svg + png + fig \\
+MATLAB 函数文件 & \verb|significanceStars.m| & $p$ 值 $\to$ 显著性星号 \\
+MATLAB 脚本文件 & \verb|pro2_cluster.m| & $K$-means 聚类 \\
+数据文件 & \verb|dkmeans.mat| & $K$-means 聚类结果 \\
+MATLAB 脚本文件 & \verb|pro2.m| & 四个工况各自的 Spearman 相关矩阵 \\
+数据文件 & \verb|pro2_spearman_cluster1_rho.csv| & 工况 1 的 Spearman $\rho$ \\
+数据文件 & \verb|pro2_spearman_cluster1_pval.csv| & 工况 1 的 $p$ 值 \\
+数据文件 & \verb|pro2_spearman_cluster2_rho.csv| & 工况 2 的 Spearman $\rho$ \\
+数据文件 & \verb|pro2_spearman_cluster2_pval.csv| & 工况 2 的 $p$ 值 \\
+数据文件 & \verb|pro2_spearman_cluster3_rho.csv| & 工况 3 的 Spearman $\rho$ \\
+数据文件 & \verb|pro2_spearman_cluster3_pval.csv| & 工况 3 的 $p$ 值 \\
+数据文件 & \verb|pro2_spearman_cluster4_rho.csv| & 工况 4 的 Spearman $\rho$ \\
+数据文件 & \verb|pro2_spearman_cluster4_pval.csv| & 工况 4 的 $p$ 值 \\
+MATLAB 脚本文件 & \verb|pro2RF.m| & 构建随机森林模型 \\
+数据文件 & \verb|rf_models.mat| & \verb|pro2RF.m| 输出 \\
+MATLAB 脚本文件 & \verb|pro2poly.m| & 构建二次多项式回归模型 \\
+数据文件 & \verb|poly_models.mat| & \verb|pro2poly.m| 输出 \\
+MATLAB 脚本文件 & \verb|pro2opt.m| & 单目标网格搜索 \\
+MATLAB 脚本文件 & \verb|dream.m| & 证明现有装备不可能达标 \\
+MATLAB 脚本文件 & \verb|pro2opt_lease.m| & 双目标 Pareto \\
+数据文件 & \verb|pareto_frontier.mat| & 双目标 Pareto 的 Pareto 前沿结果 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section*{附录B\quad 部分表数据}
+% ============================================================
+
+以下为各 CSV 数据文件的内容。受篇幅限制，仅列出与统计推断直接相关的 Spearman 秩相关系数矩阵及其 $p$ 值矩阵。
+
+% ----- B-1: 全变量 Spearman ρ -----
+\paragraph{pro1\_quali\_spearman.csv}\quad Spearman 秩相关系数矩阵。
+
+\begin{table}[htbp]
+\centering
+\caption{全变量 Spearman 秩相关系数矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &  1.0000 & -0.1261 & -0.0798 & -0.0969 & -0.0950 & -0.0716 & -0.0739 & -0.1181 & -0.1128 & -0.1719 & -0.1651 & -0.0481 & -0.1268 \\
+$C$   & -0.1261 &  1.0000 &  0.0398 &  0.1323 &  0.1293 & -0.0529 & -0.0488 & -0.2386 & -0.2374 & -0.2294 & -0.2262 &  0.1925 &  0.9895 \\
+$Q$   & -0.0798 &  0.0398 &  1.0000 &  0.1268 &  0.1246 & -0.0893 & -0.0821 & -0.2023 & -0.1897 & -0.1338 & -0.1360 &  0.1165 &  0.0371 \\
+$U_1$ & -0.0969 &  0.1323 &  0.1268 &  1.0000 &  0.8034 &  0.3506 &  0.3570 & -0.1426 & -0.1528 & -0.5753 & -0.5837 &  0.9001 &  0.1313 \\
+$U_2$ & -0.0950 &  0.1293 &  0.1246 &  0.8034 &  1.0000 &  0.3563 &  0.3610 & -0.1358 & -0.1405 & -0.5707 & -0.5772 &  0.8999 &  0.1264 \\
+$U_3$ & -0.0716 & -0.0529 & -0.0893 &  0.3506 &  0.3563 &  1.0000 &  0.7035 &  0.4878 &  0.4965 & -0.2938 & -0.2993 &  0.4840 & -0.0520 \\
+$U_4$ & -0.0739 & -0.0488 & -0.0821 &  0.3570 &  0.3610 &  0.7035 &  1.0000 &  0.4831 &  0.4842 & -0.3042 & -0.3079 &  0.4930 & -0.0492 \\
+$T_1$ & -0.1181 & -0.2386 & -0.2023 & -0.1426 & -0.1358 &  0.4878 &  0.4831 &  1.0000 &  0.6656 &  0.1930 &  0.1864 & -0.1887 & -0.2360 \\
+$T_2$ & -0.1128 & -0.2374 & -0.1897 & -0.1528 & -0.1405 &  0.4965 &  0.4842 &  0.6656 &  1.0000 &  0.2002 &  0.1926 & -0.1925 & -0.2339 \\
+$T_3$ & -0.1719 & -0.2294 & -0.1338 & -0.5753 & -0.5707 & -0.2938 & -0.3042 &  0.1930 &  0.2002 &  1.0000 &  0.6615 & -0.6818 & -0.2271 \\
+$T_4$ & -0.1651 & -0.2262 & -0.1360 & -0.5837 & -0.5772 & -0.2993 & -0.3079 &  0.1864 &  0.1926 &  0.6615 &  1.0000 & -0.6859 & -0.2249 \\
+$P$   & -0.0481 &  0.1925 &  0.1165 &  0.9001 &  0.8999 &  0.4840 &  0.4930 & -0.1887 & -0.1925 & -0.6818 & -0.6859 &  1.0000 &  0.1899 \\
+$\eta$& -0.1268 &  0.9895 &  0.0371 &  0.1313 &  0.1264 & -0.0520 & -0.0492 & -0.2360 & -0.2339 & -0.2271 & -0.2249 &  0.1899 &  1.0000 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% ----- B-2: 全变量 Spearman p -----
+\paragraph{pro1_quali_spearman_p.csv}\quad Spearman $p$ 值矩阵。
+
+\begin{table}[htbp]
+\centering
+\caption{全变量 Spearman 秩相关 $p$ 值矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$C$   & 0.0000 &      0 & 0.0001 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 \\
+$Q$   & 0.0000 & 0.0001 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0004 \\
+$U_1$ & 0.0000 & 0.0000 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.0000 \\
+$U_2$ & 0.0000 & 0.0000 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.0000 \\
+$U_3$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$U_4$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$T_1$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$T_2$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$T_3$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 \\
+$T_4$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 \\
+$P$   & 0.0000 & 0.0000 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.0000 \\
+$\eta$& 0.0000 &      0 & 0.0004 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% ----- B-3~B-6: 各工况 Spearman ρ -----
+\paragraph{pro2_spearman_cluster1_rho.csv}\quad 工况 1 的 Spearman $\rho$。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 1 Spearman 秩相关系数矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &  1.0000 &  0.0109 & -0.0118 & -0.3418 & -0.3571 & -0.0538 & -0.0909 &  0.0922 &  0.0902 &  0.1717 &  0.1855 & -0.3955 &  0.0108 \\
+$C$   &  0.0109 &  1.0000 &  0.0078 &  0.0186 &  0.0144 & -0.1164 & -0.1112 & -0.1276 & -0.1378 & -0.0493 & -0.0179 &  0.0185 &  0.9991 \\
+$Q$   & -0.0118 &  0.0078 &  1.0000 &  0.6757 &  0.6817 & -0.6700 & -0.6751 & -0.7243 & -0.7237 & -0.3689 & -0.3768 &  0.6801 &  0.0092 \\
+$U_1$ & -0.3418 &  0.0186 &  0.6757 &  1.0000 &  0.7604 & -0.5831 & -0.5476 & -0.6973 & -0.7076 & -0.4367 & -0.4639 &  0.8849 &  0.0188 \\
+$U_2$ & -0.3571 &  0.0144 &  0.6817 &  0.7604 &  1.0000 & -0.5685 & -0.5480 & -0.7059 & -0.6967 & -0.4187 & -0.4429 &  0.8881 &  0.0142 \\
+$U_3$ & -0.0538 & -0.1164 & -0.6700 & -0.5831 & -0.5685 &  1.0000 &  0.6534 &  0.6808 &  0.6881 &  0.3259 &  0.3265 & -0.4843 & -0.1167 \\
+$U_4$ & -0.0909 & -0.1112 & -0.6751 & -0.5476 & -0.5480 &  0.6534 &  1.0000 &  0.6718 &  0.6684 &  0.3009 &  0.3049 & -0.4504 & -0.1114 \\
+$T_1$ &  0.0922 & -0.1276 & -0.7243 & -0.6973 & -0.7059 &  0.6808 &  0.6718 &  1.0000 &  0.7716 &  0.4307 &  0.4171 & -0.7789 & -0.1270 \\
+$T_2$ &  0.0902 & -0.1378 & -0.7237 & -0.7076 & -0.6967 &  0.6881 &  0.6684 &  0.7716 &  1.0000 &  0.4115 &  0.4177 & -0.7775 & -0.1378 \\
+$T_3$ &  0.1717 & -0.0493 & -0.3689 & -0.4367 & -0.4187 &  0.3259 &  0.3009 &  0.4307 &  0.4115 &  1.0000 &  0.2667 & -0.4920 & -0.0483 \\
+$T_4$ &  0.1855 & -0.0179 & -0.3768 & -0.4639 & -0.4429 &  0.3265 &  0.3049 &  0.4171 &  0.4177 &  0.2667 &  1.0000 & -0.5057 & -0.0182 \\
+$P$   & -0.3955 &  0.0185 &  0.6801 &  0.8849 &  0.8881 & -0.4843 & -0.4504 & -0.7789 & -0.7775 & -0.4920 & -0.5057 &  1.0000 &  0.0183 \\
+$\eta$&  0.0108 &  0.9991 &  0.0092 &  0.0188 &  0.0142 & -0.1167 & -0.1114 & -0.1270 & -0.1378 & -0.0483 & -0.0182 &  0.0183 &  1.0000 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{pro2_spearman_cluster2_rho.csv}\quad 工况 2 的 Spearman $\rho$。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 2 Spearman 秩相关系数矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &  1.0000 &  0.1802 & -0.0346 & -0.0216 & -0.0260 & -0.0608 & -0.0332 &  0.0800 &  0.0694 & -0.0442 & -0.0531 & -0.0202 &  0.1806 \\
+$C$   &  0.1802 &  1.0000 & -0.1769 &  0.0283 &  0.0257 & -0.0395 & -0.0631 & -0.0711 & -0.0574 & -0.0188 & -0.0217 &  0.0366 &  0.9950 \\
+$Q$   & -0.0346 & -0.1769 &  1.0000 & -0.0231 & -0.0139 &  0.0438 &  0.0276 &  0.0375 &  0.0154 & -0.0333 & -0.0578 &  0.0108 & -0.1746 \\
+$U_1$ & -0.0216 &  0.0283 & -0.0231 &  1.0000 &  0.9002 &  0.4780 &  0.4913 & -0.0884 & -0.1082 & -0.5457 & -0.4836 &  0.8803 &  0.0294 \\
+$U_2$ & -0.0260 &  0.0257 & -0.0139 &  0.9002 &  1.0000 &  0.4947 &  0.5162 & -0.0985 & -0.1506 & -0.5920 & -0.5081 &  0.8761 &  0.0246 \\
+$U_3$ & -0.0608 & -0.0395 &  0.0438 &  0.4780 &  0.4947 &  1.0000 &  0.8578 &  0.5059 &  0.4067 & -0.1514 & -0.2076 &  0.5741 & -0.0382 \\
+$U_4$ & -0.0332 & -0.0631 &  0.0276 &  0.4913 &  0.5162 &  0.8578 &  1.0000 &  0.4563 &  0.3912 & -0.2357 & -0.2806 &  0.5809 & -0.0609 \\
+$T_1$ &  0.0800 & -0.0711 &  0.0375 & -0.0884 & -0.0985 &  0.5059 &  0.4563 &  1.0000 &  0.7077 &  0.2078 &  0.2238 & -0.0981 & -0.0699 \\
+$T_2$ &  0.0694 & -0.0574 &  0.0154 & -0.1082 & -0.1506 &  0.4067 &  0.3912 &  0.7077 &  1.0000 &  0.1376 &  0.0872 & -0.1284 & -0.0565 \\
+$T_3$ & -0.0442 & -0.0188 & -0.0333 & -0.5457 & -0.5920 & -0.1514 & -0.2357 &  0.2078 &  0.1376 &  1.0000 &  0.4457 & -0.5970 & -0.0149 \\
+$T_4$ & -0.0531 & -0.0217 & -0.0578 & -0.4836 & -0.5081 & -0.2076 & -0.2806 &  0.2238 &  0.0872 &  0.4457 &  1.0000 & -0.5364 & -0.0150 \\
+$P$   & -0.0202 &  0.0366 &  0.0108 &  0.8803 &  0.8761 &  0.5741 &  0.5809 & -0.0981 & -0.1284 & -0.5970 & -0.5364 &  1.0000 &  0.0361 \\
+$\eta$&  0.1806 &  0.9950 & -0.1746 &  0.0294 &  0.0246 & -0.0382 & -0.0609 & -0.0699 & -0.0565 & -0.0149 & -0.0150 &  0.0361 &  1.0000 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{pro2_spearman_cluster3_rho.csv}\quad 工况 3 的 Spearman $\rho$。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 3 Spearman 秩相关系数矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &  1.0000 & -0.0688 & -0.0159 &  0.0396 &  0.0450 & -0.0695 & -0.0723 & -0.1248 & -0.1146 & -0.2695 & -0.2077 &  0.0788 & -0.0689 \\
+$C$   & -0.0688 &  1.0000 &  0.0031 & -0.0090 & -0.0523 & -0.0551 & -0.0250 & -0.0517 & -0.0396 &  0.0628 &  0.0410 &  0.0081 &  0.9926 \\
+$Q$   & -0.0159 &  0.0031 &  1.0000 &  0.1201 &  0.1545 &  0.1775 &  0.1966 &  0.0492 &  0.0456 & -0.2190 & -0.2202 &  0.1517 & -0.0003 \\
+$U_1$ &  0.0396 & -0.0090 &  0.1201 &  1.0000 &  0.7192 &  0.5294 &  0.5480 & -0.1102 & -0.0600 & -0.4242 & -0.5221 &  0.8844 & -0.0109 \\
+$U_2$ &  0.0450 & -0.0523 &  0.1545 &  0.7192 &  1.0000 &  0.5640 &  0.5704 & -0.1813 & -0.1316 & -0.4382 & -0.5674 &  0.8801 & -0.0513 \\
+$U_3$ & -0.0695 & -0.0551 &  0.1775 &  0.5294 &  0.5640 &  1.0000 &  0.9019 &  0.0743 &  0.1542 & -0.2880 & -0.3831 &  0.6950 & -0.0552 \\
+$U_4$ & -0.0723 & -0.0250 &  0.1966 &  0.5480 &  0.5704 &  0.9019 &  1.0000 &  0.0338 &  0.1099 & -0.3773 & -0.4342 &  0.7020 & -0.0244 \\
+$T_1$ & -0.1248 & -0.0517 &  0.0492 & -0.1102 & -0.1813 &  0.0743 &  0.0338 &  1.0000 &  0.6629 &  0.1953 &  0.1443 & -0.1775 & -0.0523 \\
+$T_2$ & -0.1146 & -0.0396 &  0.0456 & -0.0600 & -0.1316 &  0.1542 &  0.1099 &  0.6629 &  1.0000 &  0.1246 &  0.1976 & -0.1287 & -0.0389 \\
+$T_3$ & -0.2695 &  0.0628 & -0.2190 & -0.4242 & -0.4382 & -0.2880 & -0.3773 &  0.1953 &  0.1246 &  1.0000 &  0.6067 & -0.5432 &  0.0651 \\
+$T_4$ & -0.2077 &  0.0410 & -0.2202 & -0.5221 & -0.5674 & -0.3831 & -0.4342 &  0.1443 &  0.1976 &  0.6067 &  1.0000 & -0.6214 &  0.0451 \\
+$P$   &  0.0788 &  0.0081 &  0.1517 &  0.8844 &  0.8801 &  0.6950 &  0.7020 & -0.1775 & -0.1287 & -0.5432 & -0.6214 &  1.0000 &  0.0093 \\
+$\eta$& -0.0689 &  0.9926 & -0.0003 & -0.0109 & -0.0513 & -0.0552 & -0.0244 & -0.0523 & -0.0389 &  0.0651 &  0.0451 &  0.0093 &  1.0000 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{pro2_spearman_cluster4_rho.csv}\quad 工况 4 的 Spearman $\rho$。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 4 Spearman 秩相关系数矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &  1.0000 & -0.0372 &  0.0246 &  0.0143 & -0.0062 &  0.0591 &  0.0157 &  0.0302 &  0.0093 & -0.1716 &  0.0370 &  0.0145 & -0.0376 \\
+$C$   & -0.0372 &  1.0000 & -0.1424 &  0.0101 &  0.1373 & -0.0136 & -0.0531 & -0.1497 & -0.1077 & -0.1488 & -0.2109 &  0.0741 &  0.9871 \\
+$Q$   &  0.0246 & -0.1424 &  1.0000 &  0.0774 &  0.0557 &  0.0954 &  0.0930 &  0.0759 &  0.0793 &  0.0772 &  0.0869 &  0.0856 & -0.1370 \\
+$U_1$ &  0.0143 &  0.0101 &  0.0774 &  1.0000 &  0.7987 &  0.1501 &  0.1609 & -0.1167 & -0.0675 & -0.4830 & -0.4826 &  0.9055 &  0.0103 \\
+$U_2$ & -0.0062 &  0.1373 &  0.0557 &  0.7987 &  1.0000 &  0.1610 &  0.1680 & -0.1295 & -0.0410 & -0.3910 & -0.4490 &  0.8936 &  0.1390 \\
+$U_3$ &  0.0591 & -0.0136 &  0.0954 &  0.1501 &  0.1610 &  1.0000 &  0.7554 &  0.6596 &  0.5952 &  0.0152 &  0.4528 &  0.3453 & -0.0137 \\
+$U_4$ &  0.0157 & -0.0531 &  0.0930 &  0.1609 &  0.1680 &  0.7554 &  1.0000 &  0.6466 &  0.5813 &  0.0065 &  0.4526 &  0.3572 & -0.0508 \\
+$T_1$ &  0.0302 & -0.1497 &  0.0759 & -0.1167 & -0.1295 &  0.6596 &  0.6466 &  1.0000 &  0.5984 &  0.3058 &  0.4328 & -0.0091 & -0.1476 \\
+$T_2$ &  0.0093 & -0.1077 &  0.0793 & -0.0675 & -0.0410 &  0.5952 &  0.5813 &  0.5984 &  1.0000 &  0.2357 &  0.3618 &  0.0304 & -0.1065 \\
+$T_3$ & -0.1716 & -0.1488 &  0.0772 & -0.4830 & -0.3910 &  0.0152 &  0.0065 &  0.3058 &  0.2357 &  1.0000 &  0.0003 & -0.4675 & -0.1485 \\
+$T_4$ &  0.0370 & -0.2109 &  0.0869 & -0.4826 & -0.4490 &  0.4528 &  0.4526 &  0.4328 &  0.3618 &  0.0003 &  1.0000 & -0.3987 & -0.2057 \\
+$P$   &  0.0145 &  0.0741 &  0.0856 &  0.9055 &  0.8936 &  0.3453 &  0.3572 & -0.0091 &  0.0304 & -0.4675 & -0.3987 &  1.0000 &  0.0747 \\
+$\eta$& -0.0376 &  0.9871 & -0.1370 &  0.0103 &  0.1390 & -0.0137 & -0.0508 & -0.1476 & -0.1065 & -0.1485 & -0.2057 &  0.0747 &  1.0000 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% ----- B-7~B-10: 各工况 Spearman p 值 -----
+\paragraph{pro2_spearman_cluster1_pval.csv}\quad 工况 1 的 $p$ 值。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 1 Spearman 秩相关 $p$ 值矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &      0 & 0.6313 & 0.6017 & 0.0000 & 0.0000 & 0.0152 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.6412 \\
+$C$   & 0.6313 &      0 & 0.7320 & 0.4170 & 0.5283 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0296 & 0.4348 & 0.4222 &      0 \\
+$Q$   & 0.6017 & 0.7320 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.6884 \\
+$U_1$ & 0.0000 & 0.4170 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.4128 \\
+$U_2$ & 0.0000 & 0.5283 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.5340 \\
+$U_3$ & 0.0152 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$U_4$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$T_1$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$T_2$ & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 &      0 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+$T_3$ & 0.0000 & 0.0296 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.0000 & 0.0000 & 0.0334 \\
+$T_4$ & 0.0000 & 0.4348 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.0000 & 0.4255 \\
+$P$   & 0.0000 & 0.4222 & 0.0000 &      0 &      0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &      0 & 0.4200 \\
+$\eta$& 0.6412 &      0 & 0.6884 & 0.4128 & 0.5340 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0334 & 0.4255 & 0.4200 &      0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{pro2_spearman_cluster2_pval.csv}\quad 工况 2 的 $p$ 值。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 2 Spearman 秩相关 $p$ 值矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &       0 & 3.98e-35 & 9.37e-17 & 9.45e-167 & 6.20e-160 & 6.42e-37 & 4.07e-41 & 1.02e-01 & 1.13e-01 & 3.38e-71 & 7.56e-81 & 1.82e-177 & 3.46e-35 \\
+$C$   & 3.98e-35 &       0 & 2.15e-41 &  2.02e-03 &  3.07e-03 & 1.54e-08 & 6.40e-14 & 6.10e-03 & 2.26e-03 & 1.31e-03 & 1.42e-10 &  2.60e-05 &       0 \\
+$Q$   & 9.37e-17 & 2.15e-41 &       0 & 1.87e-96 & 1.83e-93 & 1.34e-01 & 1.21e-02 & 1.38e-19 & 3.19e-32 & 2.46e-28 & 4.04e-23 &  2.16e-95 & 1.37e-41 \\
+$U_1$ & 9.45e-167& 2.02e-03 & 1.87e-96 &       0 & 3.50e-275& 1.21e-63 & 1.17e-67 & 1.52e-02 & 3.19e-02 & 2.54e-135& 5.57e-121&        0 & 2.10e-03 \\
+$U_2$ & 6.20e-160& 3.07e-03 & 1.83e-93 & 3.50e-275&       0 & 2.68e-67 & 3.40e-65 & 9.41e-06 & 1.15e-03 & 7.22e-125& 4.22e-117&        0 & 2.87e-03 \\
+$U_3$ & 6.42e-37 & 1.54e-08 & 1.34e-01 & 1.21e-63 & 2.68e-67 &       0 & 2.94e-139& 7.07e-58 & 1.09e-68 & 7.02e-59 & 1.47e-82 & 2.49e-140 & 1.18e-08 \\
+$U_4$ & 4.07e-41 & 6.40e-14 & 1.21e-02 & 1.17e-67 & 3.40e-65 & 2.94e-139&       0 & 3.11e-59 & 6.71e-68 & 5.74e-63 & 3.34e-61 & 5.32e-137 & 4.56e-14 \\
+$T_1$ & 1.02e-01 & 6.10e-03 & 1.38e-19 & 1.52e-02 & 9.41e-06 & 7.07e-58 & 3.11e-59 &       0 & 1.69e-54 & 1.60e-13 & 5.50e-16 &  3.41e-03 & 5.46e-03 \\
+$T_2$ & 1.13e-01 & 2.26e-03 & 3.19e-32 & 3.19e-02 & 1.15e-03 & 1.09e-68 & 6.71e-68 & 1.69e-54 &       0 & 6.23e-07 & 9.42e-13 &  3.96e-03 & 2.03e-03 \\
+$T_3$ & 3.38e-71 & 1.31e-03 & 2.46e-28 & 2.54e-135& 7.22e-125& 7.02e-59 & 5.74e-63 & 1.60e-13 & 6.23e-07 &       0 & 9.60e-78 & 3.01e-154 & 1.27e-03 \\
+$T_4$ & 7.56e-81 & 1.42e-10 & 4.04e-23 & 5.57e-121& 4.22e-117& 1.47e-82 & 3.34e-61 & 5.50e-16 & 9.42e-13 & 9.60e-78 &       0 & 3.66e-138 & 1.22e-10 \\
+$P$   & 1.82e-177& 2.60e-05 & 2.16e-95 &        0 &        0 & 2.49e-140& 5.32e-137& 3.41e-03 & 3.96e-03 & 3.01e-154& 3.66e-138&       0 & 2.52e-05 \\
+$\eta$& 3.46e-35 &       0 & 1.37e-41 & 2.10e-03 & 2.87e-03 & 1.18e-08 & 4.56e-14 & 5.46e-03 & 2.03e-03 & 1.27e-03 & 1.22e-10 &  2.52e-05 &       0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{pro2_spearman_cluster3_pval.csv}\quad 工况 3 的 $p$ 值。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 3 Spearman 秩相关 $p$ 值矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &       0 & 8.19e-14 & 6.77e-46 & 2.85e-41 & 4.22e-29 & 2.30e-09 & 5.97e-06 & 3.55e-58 & 2.24e-58 & 9.84e-32 & 9.42e-27 & 1.21e-52 & 8.17e-14 \\
+$C$   & 8.19e-14 &       0 & 1.26e-72 & 6.56e-120& 2.57e-117& 1.49e-53 & 6.33e-61 & 1.58e-20 & 4.17e-17 & 5.71e-18 & 7.08e-13 & 1.38e-148&       0 \\
+$Q$   & 6.77e-46 & 1.26e-72 &       0 & 2.81e-08 & 1.17e-09 & 3.24e-23 & 9.62e-25 & 2.65e-27 & 8.10e-29 & 1.84e-01 & 1.41e-02 &  1.82e-08 & 9.44e-73 \\
+$U_1$ & 2.85e-41 & 6.56e-120& 2.81e-08 &       0 & 6.14e-96 & 1.58e-31 & 2.00e-33 & 1.54e-04 & 7.14e-04 & 2.50e-21 & 1.27e-16 & 3.29e-319& 4.78e-120 \\
+$U_2$ & 4.22e-29 & 2.57e-117& 1.17e-09 & 6.14e-96 &       0 & 3.45e-35 & 1.16e-41 & 2.62e-08 & 3.36e-06 & 4.19e-19 & 1.33e-15 & 1.79e-301& 5.46e-117 \\
+$U_3$ & 2.30e-09 & 1.49e-53 & 3.24e-23 & 1.58e-31 & 3.45e-35 &       0 & 8.42e-52 & 4.90e-31 & 4.22e-44 & 5.39e-05 & 2.96e-03 & 2.48e-118& 2.45e-53 \\
+$U_4$ & 5.97e-06 & 6.33e-61 & 9.62e-25 & 2.00e-33 & 1.16e-41 & 8.42e-52 &       0 & 8.90e-35 & 5.90e-37 & 5.63e-06 & 1.08e-05 & 3.66e-130& 5.66e-61 \\
+$T_1$ & 3.55e-58 & 1.58e-20 & 2.65e-27 & 1.54e-04 & 2.62e-08 & 4.90e-31 & 8.90e-35 &       0 & 2.70e-39 & 1.80e-02 & 3.50e-01 &  9.46e-01 & 2.12e-20 \\
+$T_2$ & 2.24e-58 & 4.17e-17 & 8.10e-29 & 7.14e-04 & 3.36e-06 & 4.22e-44 & 5.90e-37 & 2.70e-39 &       0 & 8.79e-02 & 1.44e-01 &  9.51e-01 & 3.37e-17 \\
+$T_3$ & 9.84e-32 & 5.71e-18 & 1.84e-01 & 2.50e-21 & 4.19e-19 & 5.39e-05 & 5.63e-06 & 1.80e-02 & 8.79e-02 &       0 & 4.51e-27 &  2.51e-56 & 5.30e-18 \\
+$T_4$ & 9.42e-27 & 7.08e-13 & 1.41e-02 & 1.27e-16 & 1.33e-15 & 2.96e-03 & 1.08e-05 & 3.50e-01 & 1.44e-01 & 4.51e-27 &       0 &  4.66e-45 & 8.00e-13 \\
+$P$   & 1.21e-52 & 1.38e-148& 1.82e-08 & 3.29e-319& 1.79e-301& 2.48e-118& 3.66e-130& 9.46e-01 & 9.51e-01 & 2.51e-56 & 4.66e-45 &        0 & 2.12e-148 \\
+$\eta$& 8.17e-14 &       0 & 9.44e-73 & 4.78e-120& 5.46e-117& 2.45e-53 & 5.66e-61 & 2.12e-20 & 3.37e-17 & 5.30e-18 & 8.00e-13 & 2.12e-148&       0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{pro2_spearman_cluster4_pval.csv}\quad 工况 4 的 $p$ 值。
+
+\begin{table}[htbp]
+\centering
+\caption{工况 4 Spearman 秩相关 $p$ 值矩阵}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrrr}
+\toprule
+ & $H$ & $C$ & $Q$ & $U_1$ & $U_2$ & $U_3$ & $U_4$ & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $P$ & $\eta$ \\
+\midrule
+$H$   &       0 & 4.66e-77 & 1.14e-16 & 3.82e-180& 4.73e-186& 6.35e-130& 1.92e-124& 1.91e-16 & 1.55e-12 & 7.20e-05 & 2.12e-05 & 2.97e-182& 8.17e-77 \\
+$C$   & 4.66e-77 &       0 & 1.78e-20 & 1.76e-44 & 1.15e-40 & 7.00e-33 & 3.66e-31 & 9.52e-04 & 2.22e-05 & 3.52e-45 & 8.24e-47 & 5.42e-49 &        0 \\
+$Q$   & 1.14e-16 & 1.78e-20 &       0 & 3.75e-99 & 1.37e-111& 1.61e-66 & 1.46e-63 & 1.27e-25 & 2.34e-23 & 1.60e-11 & 6.62e-14 & 1.72e-84 & 1.54e-20 \\
+$U_1$ & 3.82e-180& 1.76e-44 & 3.75e-99 &       0 &        0 & 5.28e-192& 1.49e-171& 6.79e-02 & 1.19e-02 & 3.84e-65 & 1.96e-67 &        0 & 1.65e-44 \\
+$U_2$ & 4.73e-186& 1.15e-40 & 1.37e-111&       0 &       0 & 2.42e-198& 1.43e-191& 3.89e-01 & 2.37e-01 & 2.44e-63 & 3.34e-63 &        0 & 8.17e-41 \\
+$U_3$ & 6.35e-130& 7.00e-33 & 1.61e-66 & 5.28e-192& 2.42e-198&       0 & 1.42e-133& 4.82e-06 & 5.30e-05 & 2.52e-32 & 3.49e-26 &        0 & 6.11e-33 \\
+$U_4$ & 1.92e-124& 3.66e-31 & 1.46e-63 & 1.49e-171& 1.43e-191& 1.42e-133&       0 & 9.78e-03 & 1.06e-02 & 4.54e-36 & 5.01e-31 &        0 & 2.60e-31 \\
+$T_1$ & 1.91e-16 & 9.52e-04 & 1.27e-25 & 6.79e-02 & 3.89e-01 & 4.82e-06 & 9.78e-03 &       0 & 1.27e-106& 6.58e-99 & 3.19e-110& 7.11e-18 & 8.72e-04 \\
+$T_2$ & 1.55e-12 & 2.22e-05 & 2.34e-23 & 1.19e-02 & 2.37e-01 & 5.30e-05 & 1.06e-02 & 1.27e-106&       0 & 5.17e-112& 6.26e-105& 2.26e-17 & 2.38e-05 \\
+$T_3$ & 7.20e-05 & 3.52e-45 & 1.60e-11 & 3.84e-65 & 2.44e-63 & 2.52e-32 & 4.54e-36 & 6.58e-99 & 5.17e-112&       0 &        0 & 1.59e-102& 5.27e-45 \\
+$T_4$ & 2.12e-05 & 8.24e-47 & 6.62e-14 & 1.96e-67 & 3.34e-63 & 3.49e-26 & 5.01e-31 & 3.19e-110& 6.26e-105&       0 &       0 & 1.43e-94 & 1.34e-46 \\
+$P$   & 2.97e-182& 5.42e-49 & 1.72e-84 &        0 &        0 &        0 &        0 & 7.11e-18 & 2.26e-17 & 1.59e-102& 1.43e-94 &       0 & 3.69e-49 \\
+$\eta$& 8.17e-77 &       0 & 1.54e-20 & 1.65e-44 & 8.17e-41 & 6.11e-33 & 2.60e-31 & 8.72e-04 & 2.38e-05 & 5.27e-45 & 1.34e-46 & 3.69e-49 &       0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% ============================================================
+\section*{附录C\quad 代码}
+% ============================================================
+
+以下为支撑材料中所有 MATLAB 脚本与函数的完整源代码。代码按做题顺序先后、工具函数最后的顺序排列，每个代码块前标注文件名与功能说明。
+
+% ----- 数据准备 -----
+\paragraph{draw.m}\quad 读取 CSV 并作各变量时序图。
+
+\begin{lstlisting}[language=Matlab, caption={draw.m\quad 读取CSV并作各变量时序图}, label={code:draw}]
+clc; clear; close all;
+%% 读取数据并绘制各变量与时间戳的散点图
+data = readtable('原题\Cement_ESP_Data.csv');
+save("data.mat", "data")
+
+% 解析时间戳
+t = datetime(data.timestamp);
+
+% 计算净化量（入口浓度 g/Nm³ - 出口浓度 mg/Nm³ 转 g/Nm³）
+dC = data.C_in_gNm3 - data.C_out_mgNm3 / 1000;
+data.dC = dC;
+
+% 计算除尘效率（注意单位：出口浓度 mg/Nm³ → g/Nm³ 除以 1000）
+eff = (data.C_in_gNm3 - data.C_out_mgNm3 / 1000) ./ data.C_in_gNm3 * 100;
+data.eff = eff;
+
+% 需要绘制的变量（排除 timestamp）
+varNames = data.Properties.VariableNames(2:end);
+
+% 标签映射
+labels = {'Temp_C (℃)', 'C_{in} (g/Nm³)', 'Q (Nm³/h)', ...
+          'U_1 (kV)', 'U_2 (kV)', 'U_3 (kV)', 'U_4 (kV)', ...
+          'T_1 (s)', 'T_2 (s)', 'T_3 (s)', 'T_4 (s)', ...
+          'C_{out} (mg/Nm³)', 'P_{total} (kW)', ...
+          '净化量 (g/Nm³)', '除尘效率 (%)'};
+
+% 创建保存目录
+if ~exist('img\orig', 'dir')
+    mkdir('img\orig');
+end
+
+% 每个变量单独画一张图
+for i = 1:numel(varNames)
+    fig = figure('Name', labels{i});
+    scatter(t, data.(varNames{i}), 2, 'filled');
+    xlabel('时间');
+    ylabel(labels{i});
+    grid on;
+    xtickformat('MM-dd HH:mm');
+
+    % 保存 svg、png、fig
+    saveas(fig, fullfile('img\orig', [varNames{i} '.svg']));
+    saveas(fig, fullfile('img\orig', [varNames{i} '.png']));
+    savefig(fig, fullfile('img\orig', [varNames{i} '.fig']));
+end
+\end{lstlisting}
+
+\paragraph{clean.m}\quad 数据清洗。
+
+\begin{lstlisting}[language=Matlab, caption={clean.m\quad 数据清洗}, label={code:clean}]
+%% 自动检测并清除各变量对时间的局部异常（如 May 6 高温类噪声）
+clc; clear; close all;
+
+data = readtable('原题\Cement_ESP_Data.csv');
+t = datetime(data.timestamp);
+t_hours = hours(t - t(1));  % 以小时为单位的相对时间
+n = height(data);
+
+%% 傅里叶级数拟合（周为基频，谐波覆盖至 ~6h 周期）
+T = 7 * 24;        % 一周 = 168 h
+nHarm = 28;        % 最高谐波：168/28 = 6 h 周期
+X = ones(n, 1);
+for k = 1:nHarm
+    X = [X, sin(2*pi*k*t_hours/T), cos(2*pi*k*t_hours/T)]; %#ok<AGROW>
+end
+
+% 逐变量拟合，计算标准化残差
+varNames = data.Properties.VariableNames(2:end);
+nVar = numel(varNames);
+z_all = zeros(n, nVar);       % 点级 z-score
+win = 60;                     % 60 分钟滑动窗
+
+fprintf('=== 各变量异常检测报告 ===\n');
+for i = 1:nVar
+    y = data.(varNames{i});
+    ok = isfinite(y);
+    beta = X(ok,:) \ y(ok);
+    y_fit = X * beta;
+    res = y - y_fit;
+    sigma = std(res(ok));
+    if sigma > 0
+        z = res / sigma;
+    else
+        z = zeros(size(res));
+    end
+    z_all(:,i) = z;
+
+    % 滑动窗内平均 |z|，标记连续异常
+    mov_abs_z = movmean(abs(z), win);
+    bad_i = mov_abs_z > 2.5;
+    bad_i = imdilate(bad_i, ones(win, 1));  % 膨胀确保整段覆盖
+    nBad = sum(bad_i);
+    if nBad > 0
+        fprintf('  %-18s  异常点: %6d / %d  (%.1f%%)\n', varNames{i}, nBad, n, 100*nBad/n);
+    end
+    data.([varNames{i} '_bad']) = bad_i;
+end
+
+%% 合并：任一点被任一变量标记即剔除
+bad_any = any(table2array(data(:, contains(data.Properties.VariableNames, '_bad'))), 2);
+data_clean = data(~bad_any, :);
+
+fprintf('\n合并后剔除: %d / %d  (%.1f%%)\n', sum(bad_any), n, 100*sum(bad_any)/n);
+
+% 补上派生变量
+data_clean.dC  = data_clean.C_in_gNm3 - data_clean.C_out_mgNm3 / 1000;
+data_clean.eff = (data_clean.C_in_gNm3 - data_clean.C_out_mgNm3 / 1000) ...
+                 ./ data_clean.C_in_gNm3 * 100;
+
+% 删掉临时标记列
+data_clean = removevars(data_clean, contains(data_clean.Properties.VariableNames, '_bad'));
+
+save('dc.mat', 'data_clean');
+writetable(data_clean, 'dc.csv');
+fprintf('已保存 dc.mat 和 dc.csv，清洗后 %d 行\n', height(data_clean));
+
+%% ===== 重新绘图，保存到 img\clean\ =====
+outDir = fullfile('img', 'clean');
+if ~exist(outDir, 'dir')
+    mkdir(outDir);
+end
+
+t_clean = datetime(data_clean.timestamp);
+varNames_plot = data_clean.Properties.VariableNames(2:end);
+labels = {'Temp_C (℃)', 'C_{in} (g/Nm³)', 'Q (Nm³/h)', ...
+          'U_1 (kV)', 'U_2 (kV)', 'U_3 (kV)', 'U_4 (kV)', ...
+          'T_1 (s)', 'T_2 (s)', 'T_3 (s)', 'T_4 (s)', ...
+          'C_{out} (mg/Nm³)', 'P_{total} (kW)', ...
+          '净化量 (g/Nm³)', '除尘效率 (%)'};
+
+% 清洗后各变量独立图
+for i = 1:numel(varNames_plot)
+    fig = figure('Name', ['清洗后 - ', labels{i}]);
+    scatter(t_clean, data_clean.(varNames_plot{i}), 2, 'filled');
+    xlabel('时间');
+    ylabel(labels{i});
+    grid on;
+    xtickformat('MM-dd HH:mm');
+
+    saveas(fig, fullfile(outDir, [varNames_plot{i}, '.svg']));
+    saveas(fig, fullfile(outDir, [varNames_plot{i}, '.png']));
+    savefig(fig, fullfile(outDir, [varNames_plot{i}, '.fig']));
+end
+
+fprintf('图片已保存到 %s\n', outDir);
+
+%% ===== 诊断图：标出被删除的点及其删除原因 =====
+diagDir = fullfile('img', 'clean');
+t_orig = datetime(data.timestamp);
+
+for i = 1:nVar
+    bad_i = data.([varNames{i} '_bad']);        % 此变量导致的异常
+    bad_other = bad_any & ~bad_i;                % 其他变量导致异常、此变量正常
+    kept = ~bad_any;                             % 保留的点
+
+    fig = figure('Name', sprintf('清洗诊断 - %s', varNames{i}));
+    hold on;
+    h1 = scatter(t_orig(kept), data.(varNames{i})(kept), 2, 'filled', ...
+        'MarkerFaceColor', [0.7 0.7 0.7], 'DisplayName', '保留');
+    h2 = scatter(t_orig(bad_i), data.(varNames{i})(bad_i), 6, 'filled', ...
+        'MarkerFaceColor', [0.85 0.2 0.2], 'DisplayName', '此变量异常删除');
+    h3 = scatter(t_orig(bad_other), data.(varNames{i})(bad_other), 4, 'filled', ...
+        'MarkerFaceColor', [1.0 0.6 0.2], 'DisplayName', '他变量异常连带删除');
+    hold off;
+    xlabel('时间');
+    ylabel(varNames{i});
+    legend([h2, h3, h1], 'Location', 'best');
+    grid on;
+    xtickformat('MM-dd HH:mm');
+
+    saveas(fig, fullfile(diagDir, [varNames{i} '_diag.svg']));
+    saveas(fig, fullfile(diagDir, [varNames{i} '_diag.png']));
+    savefig(fig, fullfile(diagDir, [varNames{i} '_diag.fig']));
+end
+
+fprintf('诊断图已保存到 %s\n', diagDir);
+\end{lstlisting}
+
+% ----- 第一问 -----
+\paragraph{pro1_quali.m}\quad 正态性检验与 Spearman 相关矩阵。
+
+\begin{lstlisting}[language=Matlab, caption={pro1\_quali.m\quad 正态性检验与Spearman相关矩阵}, label={code:pro1_quali}]
+%% 第一问定性分析：正态性检验 → Spearman 相关性
+clear;clc;close all;
+if isfile('pro1_quali.txt'), delete('pro1_quali.txt'); end
+diary('pro1_quali.txt');
+
+load('dc.mat', 'data_clean');
+
+outDir = fullfile('img', 'pro1_quali');
+if ~exist(outDir, 'dir'), mkdir(outDir); end
+
+%% 变量定义（符号对齐论文统一符号表）
+%  H: 温度 (℃)     C: 入口粉尘浓度 (g/Nm³)     Q: 流量 (Nm³/h)
+%  U_i: 第 i 电场二次电压 (kV)     T_i: 第 i 电场振打周期 (s)
+%  P: 总电耗 (kW)     η: 除尘效率 (%)
+predVars = {'Temp_C','C_in_gNm3','Q_Nm3h', ...
+            'U1_kV','U2_kV','U3_kV','U4_kV', ...
+            'T1_s','T2_s','T3_s','T4_s','P_total_kW'};
+varSymbols = {'H','C','Q', ...
+              'U_1','U_2','U_3','U_4', ...
+              'T_1','T_2','T_3','T_4','P'};
+targetVar = 'eff';
+targetSymbol = '\eta';
+% 文件名安全版本（去除 LaTeX 转义符）
+fileSafeSymbols = {'H','C','Q','U1','U2','U3','U4','T1','T2','T3','T4','P','eta'};
+
+allVars = [predVars, {targetVar}];
+allSymbols = [varSymbols, {targetSymbol}];
+nVars = length(allVars);
+nPred = length(predVars);
+
+%% 1. 正态性检验（Jarque-Bera + 偏度/峰度）
+fprintf('正态性检验 (Jarque-Bera, H0: 正态分布, alpha=0.05)\n\n');
+fprintf('%-6s %8s %8s %8s %6s  %s\n', '变量', '偏度', '峰度', 'p值', 'h', '结论');
+fprintf('%s\n', repmat('-', 1, 58));
+
+skewVals = zeros(nVars, 1);
+kurtVals = zeros(nVars, 1);
+jbPVals  = zeros(nVars, 1);
+isNormal = zeros(nVars, 1);
+X_all    = zeros(height(data_clean), nVars);
+
+for i = 1:nVars
+    vn = allVars{i};
+    x = data_clean.(vn);
+    ok = isfinite(x);
+    x_ok = x(ok);
+    X_all(ok, i) = x_ok;
+
+    skewVals(i) = skewness(x_ok);
+    kurtVals(i) = kurtosis(x_ok);
+    [h, p] = jbtest(x_ok);
+    jbPVals(i) = p;
+    isNormal(i) = ~h;
+
+    if h, verdict = '非正态'; else, verdict = '正态'; end
+    fprintf('%-6s %+8.3f %+8.3f %8.4f %6d  %s\n', ...
+        allSymbols{i}, skewVals(i), kurtVals(i), p, h, verdict);
+end
+
+nNormal = sum(isNormal);
+fprintf('\n%d/%d 个变量通过正态性检验\n', nNormal, nVars);
+if nNormal < nVars
+    fprintf('大样本下 JB 检验过度敏感，改用 Spearman 秩相关（无分布假设）\n');
+end
+
+%% 图: 各变量直方图 + 正态叠加（每变量独立图窗）
+for i = 1:nVars
+    x = X_all(:, i);
+    x = x(isfinite(x));
+    fig = figure('Name', sprintf('直方图 - %s', allSymbols{i}));
+    histogram(x, 40, 'Normalization', 'pdf', 'EdgeAlpha', 0.3, 'FaceAlpha', 0.6);
+    hold on;
+    xg = linspace(min(x), max(x), 200);
+    mu = mean(x); sg = std(x);
+    plot(xg, normpdf(xg, mu, sg), 'r-', 'LineWidth', 1.5);
+    xlabel(allSymbols{i}); ylabel('概率密度');
+    grid on;
+    saveCurrent(fig, sprintf('hist_%s', fileSafeSymbols{i}), outDir);
+end
+
+%% 图: 直方图汇总大图
+gridCols1 = [12, 13, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+gridPos1  = [ 2,  3, 5, 6, 7, 9,10,11,12,13,14,15,16];
+figHistGrid = figure('Name', '直方图汇总');
+for p = 1:13
+    subplot(4, 4, gridPos1(p));
+    x = X_all(:, gridCols1(p));
+    x = x(isfinite(x));
+    histogram(x, 40, 'Normalization', 'pdf', 'EdgeAlpha', 0.3, 'FaceAlpha', 0.6);
+    hold on;
+    xg = linspace(min(x), max(x), 200);
+    mu = mean(x); sg = std(x);
+    plot(xg, normpdf(xg, mu, sg), 'r-', 'LineWidth', 1);
+    xlabel(allSymbols{gridCols1(p)}); ylabel('');
+    grid on;
+end
+saveCurrent(figHistGrid, 'hist_grid', outDir);
+
+%% 2. Spearman 相关性分析
+
+okRows = all(isfinite(X_all), 2);
+X_comp = X_all(okRows, :);
+fprintf('\n完整观测数: %d (去除 NaN 后)\n', sum(okRows));
+
+[R_spearman, P_spearman] = corr(X_comp, 'type', 'Spearman');
+
+%% 终端输出: 各变量与 η 的相关性（按 |rho| 降序）
+fprintf('\n与 %s 的 Spearman 相关\n\n', targetSymbol);
+fprintf('%-6s %10s %10s\n', '变量', 'Spearman rho', 'p值');
+fprintf('%s\n', repmat('-', 1, 30));
+
+spearmanWithEff = R_spearman(1:nPred, end);
+[~, sortIdx] = sort(abs(spearmanWithEff), 'descend');
+
+for k = 1:nPred
+    i = sortIdx(k);
+    rS = R_spearman(i, end);
+    pS = P_spearman(i, end);
+
+    fprintf('%-6s %+10.4f %10.2e  %s\n', ...
+        varSymbols{i}, rS, pS, ...
+        significanceStars(pS));
+end
+
+fprintf('\nSpearman: 单调依赖强度 (无分布假设)\n');
+fprintf('显著性: *** p<0.001  ** p<0.01  * p<0.05  n.s. p>=0.05\n');
+
+%% 图: Spearman 相关系数热力图
+figSpearman = figure('Name', 'Spearman 秩相关系数矩阵');
+imagesc(R_spearman);
+colormap(jet); colorbar; caxis([-1 1]);
+set(gca, 'XTick', 1:nVars, 'XTickLabel', allSymbols, ...
+         'YTick', 1:nVars, 'YTickLabel', allSymbols);
+xtickangle(45);
+axis equal tight;
+for ii = 1:nVars
+    for jj = 1:nVars
+        if ii ~= jj
+            text(jj, ii, sprintf('%.2f', R_spearman(ii,jj)), ...
+                'HorizontalAlignment', 'center', 'FontSize', 7);
+        end
+    end
+end
+saveCurrent(figSpearman, 'corr_spearman', outDir);
+
+%% 3. 变量间自相关诊断
+fprintf('\n变量间高相关对 (|rho|>0.7)\n\n');
+highCorrFound = false;
+for ii = 1:nPred
+    for jj = ii+1:nPred
+        r = R_spearman(ii, jj);
+        if abs(r) > 0.7
+            highCorrFound = true;
+            fprintf('  %s <-> %s: rho = %+.3f\n', varSymbols{ii}, varSymbols{jj}, r);
+        end
+    end
+end
+if ~highCorrFound
+    fprintf('  未发现 |rho| > 0.7 的强相关对\n');
+end
+fprintf('注: 若存在强相关对，建立回归模型时需考虑共线性\n');
+
+%% 4. 导出 Spearman 相关系数矩阵为 CSV
+
+writeCorrCSV(R_spearman, 'pro1_quali_spearman.csv', allSymbols);
+writeCorrCSV(P_spearman, 'pro1_quali_spearman_p.csv', allSymbols);
+fprintf('已导出 pro1_quali_spearman.csv 和 pro1_quali_spearman_p.csv\n');
+
+fprintf('\n图片已保存到 %s\n', outDir);
+diary off;
+\end{lstlisting}
+
+\paragraph{pro1.m}\quad 各变量时序变化规律拟合。
+
+\begin{lstlisting}[language=Matlab, caption={pro1.m\quad 各变量时序变化规律拟合}, label={code:pro1}]
+%% 对各变量（除 C_out）作单正弦函数拟合，周期由 FFT 自动确定
+clear;clc;close all;
+if isfile('pro1.txt'), delete('pro1.txt'); end
+diary('pro1.txt');
+
+load('dc.mat', 'data_clean');
+t = datetime(data_clean.timestamp);
+t_hours = hours(t - t(1));
+n = length(t_hours);
+dt = 1/60;  % 采样间隔 = 1 min = 1/60 h
+
+varNames = setdiff(data_clean.Properties.VariableNames(2:end), {'C_out_mgNm3'});
+
+labelMap = containers.Map(...
+    {'Temp_C','C_in_gNm3','Q_Nm3h', ...
+     'U1_kV','U2_kV','U3_kV','U4_kV', ...
+     'T1_s','T2_s','T3_s','T4_s', ...
+     'P_total_kW','dC','eff'}, ...
+    {'Temp_C (℃)','C_{in} (g/Nm³)','Q (Nm³/h)', ...
+     'U_1 (kV)','U_2 (kV)','U_3 (kV)','U_4 (kV)', ...
+     'T_1 (s)','T_2 (s)','T_3 (s)','T_4 (s)', ...
+     'P_{total} (kW)','净化量 (g/Nm³)','除尘效率 (%)'});
+
+outDir = fullfile('img', 'pro1');
+if ~exist(outDir, 'dir')
+    mkdir(outDir);
+end
+
+fprintf('==== 单正弦拟合报告（周期由 FFT 自动检测）====\n\n');
+
+for i = 1:numel(varNames)
+    vn = varNames{i};
+    y = data_clean.(vn);
+    lbl = labelMap(vn);
+
+    ok = isfinite(y);
+    y_ok = y(ok);
+    yc = y_ok - mean(y_ok);
+    n_ok = length(yc);
+
+    % FFT 找主导周期
+    Y = abs(fft(yc) / n_ok);
+    Y = Y(1:floor(n_ok/2)+1);
+    Y(1) = 0;
+    f = (0:floor(n_ok/2))' / n_ok * 60;  % cycles/hour
+    [~, idxPeak] = max(Y);
+    T_detected = 1 / f(idxPeak);
+
+    % 限制周期在合理范围 [4h, 200h]
+    T_use = max(4, min(200, T_detected));
+
+    % 单正弦拟合
+    omega = 2 * pi / T_use;
+    X = [ones(n,1), sin(omega * t_hours), cos(omega * t_hours)];
+    beta = X(ok,:) \ y(ok);
+    yFit = X * beta;
+    res = y - yFit;
+
+    RSS = sum(res(ok).^2);
+    TSS = sum((y_ok - mean(y_ok)).^2);
+    R2 = 1 - RSS / TSS;
+    RMSE = sqrt(RSS / sum(ok));
+
+    a0 = beta(1);
+    A = sqrt(beta(2)^2 + beta(3)^2);
+    phi = atan2(beta(3), beta(2));
+
+    % CLI
+    fprintf('─ %s ─────────────────────────────\n', lbl);
+    fprintf('  检测周期: %.1f h   振幅: %.4f   相位: %.4f rad\n', T_use, A, phi);
+    fprintf('  a0 = %.4f    R² = %.4f    RMSE = %.4f\n', a0, R2, RMSE);
+    fprintf('  y = %.4f + %.4f · sin(2πt/%.1f + %.4f rad)\n\n', a0, A, T_use, phi);
+
+    % 图1：拟合叠加
+    fig = figure('Name', sprintf('拟合 - %s', lbl));
+    hold on;
+    scatter(t, y, 2, [0.7 0.7 0.7], 'filled');
+    plot(t, yFit, 'r-', 'LineWidth', 1);
+    xlabel('时间'); ylabel(lbl);
+    grid on; xtickformat('MM-dd HH:mm');
+    legend({'数据', '拟合'}, 'Location', 'best');
+    saveas(fig, fullfile(outDir, [vn, '.svg']));
+    saveas(fig, fullfile(outDir, [vn, '.png']));
+    savefig(fig, fullfile(outDir, [vn, '.fig']));
+
+    % 图2：诊断
+    fig2 = figure('Name', sprintf('诊断 - %s', lbl));
+    tlo = tiledlayout(3, 1);
+
+    nexttile;
+    plot(t, res, '.', 'MarkerSize', 3);
+    yline(0, '--');
+    ylabel('残差'); grid on;
+    xtickformat('MM-dd HH:mm');
+
+    nexttile;
+    histogram(res, 40, 'Normalization', 'pdf', 'EdgeAlpha', 0.3);
+    hold on;
+    res_ok = res(isfinite(res));
+    xg = linspace(min(res_ok), max(res_ok), 200);
+    smu = mean(res_ok); ssigma = std(res_ok);
+    plot(xg, exp(-(xg-smu).^2/(2*ssigma^2))/(ssigma*sqrt(2*pi)), 'r-', 'LineWidth', 1.5);
+    xlabel('残差'); ylabel('概率密度'); grid on;
+
+    nexttile;
+    maxLag = min(120, length(res_ok)-1);
+    acf = zeros(maxLag+1, 1);
+    for lag = 0:maxLag
+        x1 = res_ok(1:end-lag); x2 = res_ok(1+lag:end);
+        acf(lag+1) = mean((x1-mean(x1)).*(x2-mean(x2))) / (std(x1)*std(x2));
+    end
+    stem(0:maxLag, acf, 'Marker', 'none');
+    hold on;
+    conf = 1.96 / sqrt(length(res_ok));
+    yline( conf, 'r--'); yline(-conf, 'r--'); yline(0, '--');
+    xlabel('滞后 (min)'); ylabel('ACF'); grid on;
+
+    tlo.Title.String = sprintf('诊断 - %s  (R²=%.3f, T=%.1fh)', lbl, R2, T_use);
+    saveas(fig2, fullfile(outDir, [vn, '_diag.svg']));
+    saveas(fig2, fullfile(outDir, [vn, '_diag.png']));
+    savefig(fig2, fullfile(outDir, [vn, '_diag.fig']));
+end
+
+fprintf('图片已保存到 %s\n', outDir);
+diary off;
+\end{lstlisting}
+
+% ----- 工具函数 -----
+\paragraph{writeCorrCSV.m}\quad 相关系数矩阵写入 CSV 表。
+
+\begin{lstlisting}[language=Matlab, caption={writeCorrCSV.m\quad 相关系数矩阵写入CSV}, label={code:writeCorrCSV}]
+function writeCorrCSV(R, filename, symbols)
+    n = length(symbols);
+    cellOut = cell(n+1, n+1);
+    cellOut{1,1} = '';
+    for i = 1:n
+        cellOut{1, i+1} = symbols{i};
+        cellOut{i+1, 1} = symbols{i};
+    end
+    vals = R(isfinite(R) & R ~= 0);
+    if isempty(vals) || min(abs(vals)) >= 1e-4
+        fmt = '%.4f';
+    else
+        fmt = '%.4e';
+    end
+    for i = 1:n
+        for j = 1:n
+            cellOut{i+1, j+1} = sprintf(fmt, R(i,j));
+        end
+    end
+    fid = fopen(filename, 'w');
+    for r = 1:n+1
+        fprintf(fid, '%s', cellOut{r,1});
+        for c = 2:n+1
+            fprintf(fid, ',%s', cellOut{r,c});
+        end
+        fprintf(fid, '\n');
+    end
+    fclose(fid);
+end
+\end{lstlisting}
+
+\paragraph{saveCurrent.m}\quad 保存图窗为 svg + png + fig。
+
+\begin{lstlisting}[language=Matlab, caption={saveCurrent.m\quad 保存图窗}, label={code:saveCurrent}]
+function saveCurrent(fig, name, outDir)
+    saveas(fig, fullfile(outDir, [name '.svg']));
+    saveas(fig, fullfile(outDir, [name '.png']));
+    savefig(fig, fullfile(outDir, [name '.fig']));
+end
+\end{lstlisting}
+
+\paragraph{significanceStars.m}\quad $p$ 值 $\to$ 显著性星号。
+
+\begin{lstlisting}[language=Matlab, caption={significanceStars.m\quad p值→显著性星号}, label={code:significanceStars}]
+function s = significanceStars(p)
+    if p < 0.001
+        s = '***';
+    elseif p < 0.01
+        s = '** ';
+    elseif p < 0.05
+        s = '*  ';
+    else
+        s = 'n.s.';
+    end
+end
+\end{lstlisting}
+
+% ----- 第二问：聚类与相关性 -----
+\paragraph{pro2_cluster.m}\quad $K$-means 聚类。
+
+\begin{lstlisting}[language=Matlab, caption={pro2\_cluster.m\quad K-means聚类}, label={code:pro2_cluster}]
+%% 工况点聚类分析
+clear;clc;close all;
+
+outDir = fullfile('img', 'pro2');
+if ~exist(outDir, 'dir')
+    mkdir(outDir);
+end
+
+cacheFile = 'dkmeans.mat';
+figNames = {'working_point_raw', 'elbow', 'silhouette', 'working_point'};
+
+%% 加载数据并确定缓存策略
+allFigsExist = all(cellfun(@(n) isfile(fullfile(outDir, [n '.fig'])), figNames));
+
+if allFigsExist
+    openCachedFigs();
+    fprintf('从 img\\pro2\\ 加载已有图窗\n');
+    load(cacheFile, 'kOpt', 'centers_H', 'centers_C', 'H', 'C', 'idx', 'wcss', 'silAvg');
+
+elseif isfile(cacheFile)
+    load(cacheFile, 'H', 'C', 'kOpt', 'idx', 'centers_H', 'centers_C', 'wcss', 'silAvg');
+    plotRawScatter(H, C);
+    plotElbow(wcss);
+    plotSilhouette(silAvg, kOpt);
+    plotClustered(H, C, idx, centers_H, centers_C, kOpt);
+    fprintf('从 dkmeans.mat 加载数据，重新出图\n');
+
+else
+    load('dc.mat', 'data_clean');
+    H = data_clean.Temp_C;
+    C = data_clean.C_in_gNm3;
+
+    Hz = (H - mean(H)) / std(H);
+    Cz = (C - mean(C)) / std(C);
+    Xz = [Hz, Cz];
+
+    kMax = 10;
+    wcss = zeros(kMax, 1);
+    for k = 1:kMax
+        % 固定种子以保证可复现
+        rng(42);
+        [~, ~, sumd] = kmeans(Xz, k, 'Replicates', 5);
+        wcss(k) = sum(sumd);
+    end
+
+    silAvg = zeros(kMax-1, 1);
+    for k = 2:kMax
+        rng(42);
+        idx_tmp = kmeans(Xz, k, 'Replicates', 5);
+        s = silhouette(Xz, idx_tmp);
+        silAvg(k-1) = mean(s);
+    end
+    [~, kSil] = max(silAvg);
+    kOpt = kSil + 1;
+
+    rng(42);
+    [idx, centers_z] = kmeans(Xz, kOpt, 'Replicates', 10);
+    centers_H = centers_z(:,1) * std(H) + mean(H);
+    centers_C = centers_z(:,2) * std(C) + mean(C);
+
+    plotRawScatter(H, C);
+    plotElbow(wcss);
+    plotSilhouette(silAvg, kOpt);
+    plotClustered(H, C, idx, centers_H, centers_C, kOpt);
+    save(cacheFile, 'H', 'C', 'kOpt', 'idx', 'centers_H', 'centers_C', 'wcss', 'silAvg');
+    fprintf('完成计算，已保存 dkmeans.mat\n');
+end
+
+%% 终端输出
+fprintf('\n肘部法 WCSS:\n');
+for k = 1:length(wcss)
+    fprintf('  k=%d: %.2f', k, wcss(k));
+    if k > 1
+        fprintf('  (Δ=-%.1f%%)', 100*(wcss(k-1)-wcss(k))/wcss(k-1));
+    end
+    fprintf('\n');
+end
+fprintf('\n轮廓系数:\n');
+for k = 2:length(silAvg)+1
+    mark = '';
+    if k == kOpt, mark = ' <-- 最优'; end
+    fprintf('  k=%d: %.3f%s\n', k, silAvg(k-1), mark);
+end
+fprintf('\n选用 k=%d\n', kOpt);
+fprintf('聚类中心（原始坐标）:\n');
+for j = 1:kOpt
+    fprintf('  工况 %d: H=%.1f℃, C=%.2f g/Nm³\n', j, centers_H(j), centers_C(j));
+end
+fprintf('\n各聚类 H 和 C 的上下界:\n');
+for j = 1:kOpt
+    mask = idx == j;
+    H_k = H(mask); C_k = C(mask);
+    fprintf('  工况 %d: H ∈ [%.1f, %.1f]℃, C ∈ [%.2f, %.2f] g/Nm³  (n=%d)\n', ...
+        j, min(H_k), max(H_k), min(C_k), max(C_k), sum(mask));
+end
+
+%% ── 局部函数 ──
+
+function plotRawScatter(H, C)
+    figure('Name', '工况点图（原始）');
+    scatter(H, C, 4, 'filled');
+    xlabel('温度 (℃)'); ylabel('入口粉尘浓度 (g/Nm³)');
+    grid on;
+    saveCurrent('working_point_raw');
+end
+
+function plotElbow(wcss)
+    figure('Name', '肘部法');
+    plot(1:length(wcss), wcss, 'o-', 'LineWidth', 1.5);
+    xlabel('聚类数 k'); ylabel('WCSS');
+    grid on;
+    saveCurrent('elbow');
+end
+
+function plotSilhouette(silAvg, kOpt)
+    figure('Name', '轮廓系数');
+    plot(2:length(silAvg)+1, silAvg, 'o-', 'LineWidth', 1.5);
+    hold on;
+    plot(kOpt, silAvg(kOpt-1), 'ro', 'MarkerSize', 10, 'LineWidth', 2);
+    xlabel('聚类数 k'); ylabel('平均轮廓系数');
+    grid on;
+    saveCurrent('silhouette');
+end
+
+function plotClustered(H, C, idx, centers_H, centers_C, kOpt)
+    figure('Name', '工况点图');
+    hold on;
+    colors = lines(kOpt);
+    for j = 1:kOpt
+        mask = idx == j;
+        scatter(H(mask), C(mask), 4, colors(j,:), 'filled', ...
+            'DisplayName', sprintf('工况 %d', j));
+    end
+    scatter(centers_H, centers_C, 120, 'k', 'd', 'filled', ...
+        'DisplayName', '聚类中心');
+    xlabel('温度 (℃)'); ylabel('入口粉尘浓度 (g/Nm³)');
+    grid on;
+    legend('Location', 'best');
+    saveCurrent('working_point');
+end
+
+function saveCurrent(name)
+    outDir = fullfile('img', 'pro2');
+    fig = gcf;
+    saveas(fig, fullfile(outDir, [name '.svg']));
+    saveas(fig, fullfile(outDir, [name '.png']));
+    savefig(fig, fullfile(outDir, [name '.fig']));
+end
+
+function openCachedFigs()
+    outDir = fullfile('img', 'pro2');
+    openfig(fullfile(outDir, 'working_point_raw.fig'), 'visible');
+    openfig(fullfile(outDir, 'elbow.fig'), 'visible');
+    openfig(fullfile(outDir, 'silhouette.fig'), 'visible');
+    openfig(fullfile(outDir, 'working_point.fig'), 'visible');
+end
+\end{lstlisting}
+
+\paragraph{pro2.m}\quad 四个工况各自的 Spearman 相关矩阵。
+
+\begin{lstlisting}[language=Matlab, caption={pro2.m\quad 分工况Spearman相关矩阵}, label={code:pro2}]
+%% 第二问：分工况 Spearman 相关性分析
+clear;clc;close all;
+if isfile('pro2.txt'), delete('pro2.txt'); end
+diary('pro2.txt');
+
+load('dc.mat', 'data_clean');
+load('dkmeans.mat', 'idx', 'kOpt', 'centers_H', 'centers_C');
+
+outDir = fullfile('img', 'pro2');
+if ~exist(outDir, 'dir'), mkdir(outDir); end
+
+%% 变量定义（符号对齐论文统一符号表）
+predVars = {'Temp_C','C_in_gNm3','Q_Nm3h', ...
+            'U1_kV','U2_kV','U3_kV','U4_kV', ...
+            'T1_s','T2_s','T3_s','T4_s','P_total_kW'};
+varSymbols = {'H','C','Q', ...
+              'U_1','U_2','U_3','U_4', ...
+              'T_1','T_2','T_3','T_4','P'};
+targetVar = 'eff';
+targetSymbol = '\eta';
+
+allVars = [predVars, {targetVar}];
+allSymbols = [varSymbols, {targetSymbol}];
+nVars = length(allVars);
+nPred = length(predVars);
+
+%% 构造完整数据矩阵
+X_all = NaN(height(data_clean), nVars);
+for i = 1:nVars
+    x = data_clean.(allVars{i});
+    ok = isfinite(x);
+    X_all(ok, i) = x(ok);
+end
+
+%% 分工况 Spearman 相关
+fprintf('分工况 Spearman 秩相关系数分析 (k=%d)\n\n', kOpt);
+fprintf('聚类中心:\n');
+for j = 1:kOpt
+    fprintf('  工况 %d: H=%.1f C, C=%.2f g/Nm^3\n', j, centers_H(j), centers_C(j));
+end
+fprintf('\n');
+
+R_clusters = cell(kOpt, 1);
+P_clusters = cell(kOpt, 1);
+
+for cluster = 1:kOpt
+    mask = idx == cluster;
+    X_cluster = X_all(mask, :);
+    okRows = all(isfinite(X_cluster), 2);
+    X_cluster = X_cluster(okRows, :);
+    n = size(X_cluster, 1);
+
+    fprintf('-- 工况 %d (n=%d) --\n', cluster, n);
+    fprintf('  中心: H=%.1f C, C=%.2f g/Nm^3\n', centers_H(cluster), centers_C(cluster));
+
+    if n < 20
+        fprintf('  样本量过小，跳过相关分析\n\n');
+        continue;
+    end
+
+    [R_spearman, P_spearman] = corr(X_cluster, 'type', 'Spearman');
+    R_clusters{cluster} = R_spearman;
+    P_clusters{cluster} = P_spearman;
+
+    rhoWithEta = R_spearman(1:nPred, end);
+    [~, sortIdxLocal] = sort(abs(rhoWithEta), 'descend');
+
+    fprintf('  与 %s 的 Spearman 相关 (|rho| 降序):\n', targetSymbol);
+    fprintf('  %-6s %10s %10s\n', '变量', 'rho', 'p值');
+    for k = 1:nPred
+        i = sortIdxLocal(k);
+        rho = R_spearman(i, end);
+        p = P_spearman(i, end);
+        fprintf('  %-6s %+10.4f %10.2e  %s\n', varSymbols{i}, rho, p, significanceStars(p));
+    end
+
+    csvRho = sprintf('pro2_spearman_cluster%d_rho.csv', cluster);
+    csvPval = sprintf('pro2_spearman_cluster%d_pval.csv', cluster);
+    writeCorrCSV(R_spearman, csvRho, allSymbols);
+    writeCorrCSV(P_spearman, csvPval, allSymbols);
+    fprintf('  已导出 %s, %s\n', csvRho, csvPval);
+
+    % 热力图
+    cmap = jet(256);
+    nV = nVars;
+    img = zeros(nV, nV, 3);
+    for ii = 1:nV
+        for jj = 1:nV
+            if P_spearman(ii,jj) > 0.05
+                img(ii, jj, :) = [0.65, 0.65, 0.65];
+            else
+                cidx = round((R_spearman(ii,jj) + 1) / 2 * 255) + 1;
+                cidx = max(1, min(256, cidx));
+                img(ii, jj, :) = cmap(cidx, :);
+            end
+        end
+    end
+    fig = figure('Name', sprintf('Spearman - 工况 %d (n=%d)', cluster, n), ...
+        'Position', [50, 50, 750, 650]);
+    image(img);
+    set(gca, 'XTick', 1:nVars, 'XTickLabel', allSymbols, ...
+             'YTick', 1:nVars, 'YTickLabel', allSymbols);
+    xtickangle(45);
+    axis equal tight;
+    colormap(jet); caxis([-1 1]); colorbar('Position', [0.92, 0.15, 0.03, 0.70]);
+    for ii = 1:nVars
+        for jj = 1:nVars
+            if ii ~= jj
+                t = sprintf('%.2f', R_spearman(ii,jj));
+                if P_spearman(ii,jj) <= 0.05
+                    t = [t, newline, significanceStars(P_spearman(ii,jj))];
+                else
+                    t = [t, newline, 'n.s.'];
+                end
+                text(jj, ii, t, 'HorizontalAlignment', 'center', 'FontSize', 8);
+            end
+        end
+    end
+    saveCurrent(fig, sprintf('spearman_cluster%d', cluster), outDir);
+
+    fprintf('\n');
+end
+
+%% 分工况 Spearman 汇总大图（2×2）
+gridMap = [1, 4; 3, 2];
+clusterLabel = {
+    sprintf('工况 1: 低温高尘 (n=%d)', sum(idx==1 & all(isfinite(X_all),2)));
+    sprintf('工况 2: 高温低尘 (n=%d)', sum(idx==2 & all(isfinite(X_all),2)));
+    sprintf('工况 3: 低温低尘 (n=%d)', sum(idx==3 & all(isfinite(X_all),2)));
+    sprintf('工况 4: 高温高尘 (n=%d)', sum(idx==4 & all(isfinite(X_all),2)));
+};
+
+figGrid = figure('Name', '分工况 Spearman 秩相关系数矩阵', ...
+    'Position', [50, 50, 1200, 900]);
+cmap = jet(256);
+for row = 1:2
+    for col = 1:2
+        c = gridMap(row, col);
+        subplot(2, 2, (row-1)*2 + col);
+        if isempty(R_clusters{c})
+            axis off; continue;
+        end
+        R = R_clusters{c};
+        P = P_clusters{c};
+        nV = nVars;
+        img = zeros(nV, nV, 3);
+        for ii = 1:nV
+            for jj = 1:nV
+                if P(ii,jj) > 0.05
+                    img(ii, jj, :) = [0.65, 0.65, 0.65];
+                else
+                    cidx = round((R(ii,jj) + 1) / 2 * 255) + 1;
+                    cidx = max(1, min(256, cidx));
+                    img(ii, jj, :) = cmap(cidx, :);
+                end
+            end
+        end
+        image(img);
+        set(gca, 'XTick', 1:nVars, 'XTickLabel', allSymbols, ...
+                 'YTick', 1:nVars, 'YTickLabel', allSymbols);
+        xtickangle(45);
+        axis equal tight;
+        title(clusterLabel{c}, 'FontSize', 10);
+        for ii = 1:nVars
+            for jj = 1:nVars
+                if ii ~= jj
+                    t = sprintf('%.2f', R(ii,jj));
+                    if P(ii,jj) <= 0.05
+                        t = [t, newline, significanceStars(P(ii,jj))];
+                    else
+                        t = [t, newline, 'n.s.'];
+                    end
+                    text(jj, ii, t, 'HorizontalAlignment', 'center', 'FontSize', 6);
+                end
+            end
+        end
+    end
+end
+saveCurrent(figGrid, 'spearman_grid', outDir);
+
+fprintf('显著性: *** p<0.001  ** p<0.01  * p<0.05  n.s. p>=0.05\n');
+diary off;
+\end{lstlisting}
+
+% ----- 第二问：建模 -----
+\paragraph{pro2RF.m}\quad 构建随机森林模型。
+
+\begin{lstlisting}[language=Matlab, caption={pro2RF.m\quad 构建随机森林模型}, label={code:pro2RF}]
+%% 第二问：随机森林建模
+%  f: η = f(H, C, Q, Ū₁, Ū₂, T̄₁, T̄₂)  全局 RF
+clear;clc;close all;
+
+if isfile('pro2RF.txt'), delete('pro2RF.txt'); end
+diary('pro2RF.txt');
+
+%% 目录与缓存策略
+outDir = fullfile('img', 'pro2RF');
+if ~exist(outDir, 'dir'), mkdir(outDir); end
+
+cacheFile = 'rf_models.mat';
+
+% 期望输出的所有 fig 文件
+figNames = {'f_pred_vs_actual', 'f_oob_residuals', 'f_importance'};
+
+allFigsExist = all(cellfun(@(n) isfile(fullfile(outDir, [n '.fig'])), figNames));
+cacheExists = isfile(cacheFile);
+
+%% 加载数据
+load('dc.mat', 'data_clean');
+
+fprintf('===== 第二问：随机森林建模 =====\n\n');
+fprintf('数据总量: %d 行\n', height(data_clean));
+
+%% 变量合并（减少共线性，降维）
+Ubar1 = (data_clean.U1_kV + data_clean.U2_kV) / 2;
+Ubar2 = (data_clean.U3_kV + data_clean.U4_kV) / 2;
+Tbar1 = (data_clean.T1_s  + data_clean.T2_s)  / 2;
+Tbar2 = (data_clean.T3_s  + data_clean.T4_s)  / 2;
+
+H = data_clean.Temp_C;
+C_in = data_clean.C_in_gNm3;
+Q = data_clean.Q_Nm3h;
+eta = data_clean.eff;
+
+varNames_f = {'$H$','$C$','$Q$','$\bar{U}_1$','$\bar{U}_2$','$\bar{T}_1$','$\bar{T}_2$'};
+nTrees = 200;
+
+
+%%  缓存判断
+
+if allFigsExist
+    % 情况 1：fig 全部存在，直接跳过
+    load(cacheFile, 'f_model');
+    R2_train_f = NaN; R2_f = NaN; deltaR2_f = NaN; RMSE_f = NaN;
+    fprintf('检测到所有 fig 已存在，跳过训练。\n');
+    fprintf('从 rf_models.mat 加载模型。\n');
+
+elseif cacheExists
+    % 情况 2：rf_models.mat 存在但 fig 不完整 → 加载模型，重出图
+    load(cacheFile, 'f_model');
+    fprintf('检测到 rf_models.mat，加载模型并重新出图...\n');
+
+    % 重算评估指标用于出图
+    X_f = [H, C_in, Q, Ubar1, Ubar2, Tbar1, Tbar2];
+    y_f = eta;
+    ok_f = all(isfinite(X_f), 2) & isfinite(y_f);
+    X_f = X_f(ok_f, :); y_f = y_f(ok_f);
+    rng(42);
+    n_f = length(y_f);
+    nTrain_f = round(0.8 * n_f);
+    perm_f = randperm(n_f);
+    idxTest_f = perm_f(nTrain_f+1:end);
+    X_test_f = X_f(idxTest_f, :); y_test_f = y_f(idxTest_f);
+    X_train_f = X_f(perm_f(1:nTrain_f), :); y_train_f = y_f(perm_f(1:nTrain_f));
+    y_pred_f = predict(f_model, X_test_f);
+    R2_f = 1 - sum((y_test_f - y_pred_f).^2) / sum((y_test_f - mean(y_test_f)).^2);
+    RMSE_f = sqrt(mean((y_test_f - y_pred_f).^2));
+    res_f = y_test_f - y_pred_f;
+    y_pred_train_f = predict(f_model, X_train_f);
+    R2_train_f = 1 - sum((y_train_f - y_pred_train_f).^2) / sum((y_train_f - mean(y_train_f)).^2);
+    deltaR2_f = R2_train_f - R2_f;
+
+    % 出 f 图
+    plotF_figs(f_model, y_test_f, y_pred_f, res_f, X_train_f, varNames_f, R2_f, RMSE_f, outDir, nTrees);
+
+else
+    % 情况 3：从头训练
+    fprintf('从头训练随机森林模型...\n');
+
+    %% f 模型：η = f(H, C, Q, Ū₁, Ū₂, T̄₁, T̄₂)  全局 RF
+    fprintf('\n========== f 模型：η 全局 RF ==========\n');
+    X_f = [H, C_in, Q, Ubar1, Ubar2, Tbar1, Tbar2];
+    y_f = eta;
+    ok_f = all(isfinite(X_f), 2) & isfinite(y_f);
+    X_f = X_f(ok_f, :); y_f = y_f(ok_f);
+    n_f = length(y_f);
+    fprintf('有效样本: %d\n', n_f);
+
+    rng(42);
+    nTrain_f = round(0.8 * n_f);
+    perm_f = randperm(n_f);
+    X_train_f = X_f(perm_f(1:nTrain_f), :); y_train_f = y_f(perm_f(1:nTrain_f));
+    X_test_f  = X_f(perm_f(nTrain_f+1:end), :); y_test_f  = y_f(perm_f(nTrain_f+1:end));
+    fprintf('训练: %d, 测试: %d\n', nTrain_f, n_f - nTrain_f);
+
+    f_model = TreeBagger(nTrees, X_train_f, y_train_f, ...
+        'Method', 'regression', 'OOBPrediction', 'on', ...
+        'OOBPredictorImportance', 'on', 'MinLeafSize', 5);
+
+    y_pred_f = predict(f_model, X_test_f);
+    y_pred_train_f = predict(f_model, X_train_f);
+    R2_f = 1 - sum((y_test_f - y_pred_f).^2) / sum((y_test_f - mean(y_test_f)).^2);
+    R2_train_f = 1 - sum((y_train_f - y_pred_train_f).^2) / sum((y_train_f - mean(y_train_f)).^2);
+    RMSE_f = sqrt(mean((y_test_f - y_pred_f).^2));
+    MAE_f = mean(abs(y_test_f - y_pred_f));
+    res_f = y_test_f - y_pred_f;
+    deltaR2_f = R2_train_f - R2_f;
+
+    fprintf('训练 R² = %.4f, 测试 R² = %.4f, ΔR² = %.4f', R2_train_f, R2_f, deltaR2_f);
+    if deltaR2_f > 0.02, fprintf(' ⚠ 过拟合风险'); end
+    fprintf('\nRMSE = %.4f, MAE = %.4f\n', RMSE_f, MAE_f);
+
+    plotF_figs(f_model, y_test_f, y_pred_f, res_f, X_train_f, varNames_f, R2_f, RMSE_f, outDir, nTrees);
+
+    %% 保存模型
+    fprintf('\n========== 保存模型 ==========\n');
+    save(cacheFile, 'f_model', 'varNames_f');
+    fprintf('已保存 %s\n', cacheFile);
+end
+
+%% R² 汇总
+fprintf('\n========== R² 汇总 ==========\n');
+if allFigsExist
+    fprintf('(从缓存加载，跳过训练指标)\n');
+else
+    fprintf('f (η):  训练R²=%.4f  测试R²=%.4f  Δ=%.4f  RMSE=%.4f\n', ...
+        R2_train_f, R2_f, deltaR2_f, RMSE_f);
+end
+
+fprintf('\n完成。\n');
+diary off;
+
+
+%%  辅助函数
+
+
+function plotF_figs(model, y_test, y_pred, res, X_train, varNames_f, R2, RMSE, outDir, nTrees)
+    MAE = mean(abs(res));
+
+    % f 检验图 1：预测 vs 实测
+    fig = figure('Name', 'f 模型：η 预测 vs 实测', 'Position', [50, 50, 600, 550]);
+    scatter(y_test, y_pred, 8, [0.2 0.4 0.7], 'filled', 'MarkerFaceAlpha', 0.3);
+    hold on;
+    lims = [min([y_test; y_pred]), max([y_test; y_pred])];
+    plot(lims, lims, 'k--', 'LineWidth', 1);
+    hold off;
+    xlabel('实测 $\eta$ (%)'); ylabel('预测 $\eta$ (%)');
+    grid on; axis equal tight;
+    text(0.05, 0.95, sprintf('R^2 = %.4f\nRMSE = %.4f\nMAE = %.4f', R2, RMSE, MAE), ...
+        'Units', 'normalized', 'VerticalAlignment', 'top', 'FontSize', 10);
+    saveCurrent(fig, 'f_pred_vs_actual', outDir);
+
+    % f 检验图 2：OOB + 残差
+    fig = figure('Name', 'f 模型：OOB Error 与残差分布', 'Position', [100, 100, 900, 400]);
+    subplot(1,2,1);
+    oobErr = oobError(model);
+    plot(1:nTrees, oobErr, 'b-', 'LineWidth', 1.2);
+    xlabel('树棵数'); ylabel('OOB MSE'); grid on;
+    subplot(1,2,2);
+    histogram(res, 40, 'FaceColor', [0.2 0.4 0.7], 'EdgeColor', 'none');
+    hold on; xline(0, 'k--', 'LineWidth', 1); hold off;
+    xlabel('残差 $\eta$ (%)'); ylabel('频数');
+    mu_res = mean(res); sigma_res = std(res);
+    text(0.05, 0.95, sprintf('\\mu = %.4f\n\\sigma = %.4f', mu_res, sigma_res), ...
+        'Units', 'normalized', 'VerticalAlignment', 'top', 'FontSize', 9);
+    grid on;
+    saveCurrent(fig, 'f_oob_residuals', outDir);
+
+    % f 检验图 3：变量重要性
+    fig = figure('Name', 'f 模型：变量重要性', 'Position', [150, 150, 600, 420]);
+    imp = model.OOBPermutedVarDeltaError;
+    [~, ord] = sort(imp, 'descend');
+    bar(imp(ord), 'FaceColor', [0.2 0.4 0.7]);
+    set(gca, 'XTickLabel', varNames_f(ord));
+    xtickangle(30);
+    ylabel('OOB 变量重要性 (\Delta MSE)'); grid on;
+    saveCurrent(fig, 'f_importance', outDir);
+end
+\end{lstlisting}
+
+\paragraph{pro2poly.m}\quad 构建二次多项式回归模型。
+
+\begin{lstlisting}[language=Matlab, caption={pro2poly.m\quad 构建二次多项式回归模型}, label={code:pro2poly}]
+%% 第二问：二次多项式回归建模（替代 RF，支持外推）
+%  f: η = f(H, C, Q, Ū₁, Ū₂, T̄₁, T̄₂)  全局二次多项式
+%  gₖ: P = gₖ(Ū₁, Ū₂, T̄₁, T̄₂)         分工况二次多项式
+clear;clc;close all;
+
+if isfile('pro2poly.txt'), delete('pro2poly.txt'); end
+diary('pro2poly.txt');
+
+%% 目录与缓存策略
+outDir = fullfile('img', 'pro2poly');
+if ~exist(outDir, 'dir'), mkdir(outDir); end
+
+cacheFile = 'poly_models.mat';
+
+% 期望输出的所有 fig 文件
+figNames = {'f_pred_vs_actual', 'f_oob_residuals', 'f_importance'};
+for c = 1:4
+    figNames{end+1} = sprintf('g%d_pred_vs_actual', c);
+    figNames{end+1} = sprintf('g%d_importance', c);
+    figNames{end+1} = sprintf('g%d_oob_residuals', c);
+end
+
+allFigsExist = all(cellfun(@(n) isfile(fullfile(outDir, [n '.fig'])), figNames));
+
+%% 加载数据
+load('dc.mat', 'data_clean');
+load('dkmeans.mat', 'idx', 'kOpt', 'centers_H', 'centers_C');
+
+fprintf('===== 第二问：二次多项式回归建模 =====\n\n');
+fprintf('数据总量: %d 行\n', height(data_clean));
+fprintf('模型: 完整二次型（含交互项）\n');
+
+%% 变量合并
+Ubar1 = (data_clean.U1_kV + data_clean.U2_kV) / 2;
+Ubar2 = (data_clean.U3_kV + data_clean.U4_kV) / 2;
+Tbar1 = (data_clean.T1_s  + data_clean.T2_s)  / 2;
+Tbar2 = (data_clean.T3_s  + data_clean.T4_s)  / 2;
+
+H = data_clean.Temp_C;
+C_in = data_clean.C_in_gNm3;
+Q = data_clean.Q_Nm3h;
+P_total = data_clean.P_total_kW;
+eta = data_clean.eff;
+
+varNames_f = {'$H$','$C$','$Q$','$\bar{U}_1$','$\bar{U}_2$','$\bar{T}_1$','$\bar{T}_2$'};
+varNames_g = {'$\bar{U}_1$','$\bar{U}_2$','$\bar{T}_1$','$\bar{T}_2$'};
+
+%% ============================================================
+%%  缓存判断
+%% ============================================================
+if allFigsExist
+    load(cacheFile, 'f_mdl', 'g_mdls');
+    fprintf('检测到所有 fig 已存在，跳过训练。\n');
+
+elseif isfile(cacheFile)
+    load(cacheFile, 'f_mdl', 'g_mdls');
+    fprintf('检测到 poly_models.mat，加载模型并重新出图...\n');
+    X_f_all = [H, C_in, Q, Ubar1, Ubar2, Tbar1, Tbar2];
+    ok_f = all(isfinite(X_f_all), 2) & isfinite(eta);
+    X_f_all = X_f_all(ok_f, :); y_f_all = eta(ok_f);
+    rng(42); n_f = length(y_f_all);
+    nTrain_f = round(0.8 * n_f); perm_f = randperm(n_f);
+    X_test_f = X_f_all(perm_f(nTrain_f+1:end), :);
+    y_test_f = y_f_all(perm_f(nTrain_f+1:end));
+    X_train_f = X_f_all(perm_f(1:nTrain_f), :);
+    plotF_poly_figs(f_mdl, X_test_f, y_test_f, X_train_f, varNames_f, outDir);
+    X_g_all = [Ubar1, Ubar2, Tbar1, Tbar2];
+    plotG_poly_figs(g_mdls, idx, kOpt, X_g_all, P_total, centers_H, centers_C, varNames_g, outDir);
+
+else
+    fprintf('从头训练二次多项式模型...\n');
+
+    %% f 模型：η = f(H, C, Q, Ū₁, Ū₂, T̄₁, T̄₂)  全局二次
+    fprintf('\n========== f 模型：η 全局二次多项式 ==========\n');
+    X_f = [H, C_in, Q, Ubar1, Ubar2, Tbar1, Tbar2];
+    y_f = eta;
+    ok_f = all(isfinite(X_f), 2) & isfinite(y_f);
+    X_f = X_f(ok_f, :); y_f = y_f(ok_f);
+    n_f = length(y_f);
+    fprintf('有效样本: %d\n', n_f);
+
+    rng(42);
+    nTrain_f = round(0.8 * n_f);
+    perm_f = randperm(n_f);
+    X_train_f = X_f(perm_f(1:nTrain_f), :); y_train_f = y_f(perm_f(1:nTrain_f));
+    X_test_f  = X_f(perm_f(nTrain_f+1:end), :); y_test_f  = y_f(perm_f(nTrain_f+1:end));
+    fprintf('训练: %d, 测试: %d, 参数: 36\n', nTrain_f, n_f - nTrain_f);
+
+    f_mdl = fitlm(X_train_f, y_train_f, 'quadratic');
+    y_pred_f = predict(f_mdl, X_test_f);
+    y_pred_train_f = predict(f_mdl, X_train_f);
+    R2_f = 1 - sum((y_test_f - y_pred_f).^2) / sum((y_test_f - mean(y_test_f)).^2);
+    R2_train_f = 1 - sum((y_train_f - y_pred_train_f).^2) / sum((y_train_f - mean(y_train_f)).^2);
+    RMSE_f = sqrt(mean((y_test_f - y_pred_f).^2));
+    deltaR2_f = R2_train_f - R2_f;
+
+    fprintf('训练 R² = %.4f, 测试 R² = %.4f, ΔR² = %.4f', R2_train_f, R2_f, deltaR2_f);
+    if deltaR2_f > 0.02, fprintf(' ⚠ 过拟合风险'); end
+    fprintf('\nRMSE = %.4f\n', RMSE_f);
+
+    plotF_poly_figs(f_mdl, X_test_f, y_test_f, X_train_f, varNames_f, outDir);
+
+    %% gₖ 模型：P = gₖ(Ū₁, Ū₂, T̄₁, T̄₂)  分工况二次
+    fprintf('\n========== g 模型：P 分工况二次多项式 ==========\n');
+    X_g_all = [Ubar1, Ubar2, Tbar1, Tbar2]; y_g_all = P_total;
+    g_mdls = cell(kOpt, 1);
+
+    for cluster = 1:kOpt
+        fprintf('\n-- 工况 %d (H=%.1f, C=%.2f) --\n', cluster, ...
+            centers_H(cluster), centers_C(cluster));
+        mask = idx == cluster;
+        X_k = X_g_all(mask, :); y_k = y_g_all(mask);
+        ok = all(isfinite(X_k), 2) & isfinite(y_k);
+        X_k = X_k(ok, :); y_k = y_k(ok);
+        n_g = length(y_k);
+        fprintf('  有效样本: %d\n', n_g);
+        if n_g < 50, fprintf('  样本过少，跳过\n'); continue; end
+
+        rng(42 + cluster);
+        nTrain_g = round(0.8 * n_g);
+        perm_g = randperm(n_g);
+        X_train_g = X_k(perm_g(1:nTrain_g), :); y_train_g = y_k(perm_g(1:nTrain_g));
+        X_test_g  = X_k(perm_g(nTrain_g+1:end), :); y_test_g  = y_k(perm_g(nTrain_g+1:end));
+        fprintf('  训练: %d, 测试: %d, 参数: 15\n', nTrain_g, n_g - nTrain_g);
+
+        g_mdl = fitlm(X_train_g, y_train_g, 'quadratic');
+        g_mdls{cluster} = g_mdl;
+
+        y_pred_g = predict(g_mdl, X_test_g);
+        y_pred_train_g = predict(g_mdl, X_train_g);
+        R2_g = 1 - sum((y_test_g - y_pred_g).^2) / sum((y_test_g - mean(y_test_g)).^2);
+        R2_train_g = 1 - sum((y_train_g - y_pred_train_g).^2) / sum((y_train_g - mean(y_train_g)).^2);
+        deltaR2_g = R2_train_g - R2_g;
+        RMSE_g = sqrt(mean((y_test_g - y_pred_g).^2));
+
+        fprintf('  训练 R² = %.4f, 测试 R² = %.4f, ΔR² = %.4f', R2_train_g, R2_g, deltaR2_g);
+        if deltaR2_g > 0.03, fprintf(' ⚠ 过拟合风险'); end
+        fprintf('\n  RMSE = %.4f kW\n', RMSE_g);
+    end
+
+    plotG_poly_figs(g_mdls, idx, kOpt, X_g_all, P_total, centers_H, centers_C, varNames_g, outDir);
+
+    %% 保存模型
+    fprintf('\n========== 保存模型 ==========\n');
+    save(cacheFile, 'f_mdl', 'g_mdls', 'varNames_f', 'varNames_g', 'centers_H', 'centers_C', 'kOpt');
+    fprintf('已保存 %s\n', cacheFile);
+end
+
+%% ============================================================
+%%  打印多项式系数（所有路径统一输出）
+%% ============================================================
+fprintf('\n========== 多项式系数 ==========\n');
+printPoly(f_mdl, varNames_f, '\eta');
+for k = 1:kOpt
+    if ~isempty(g_mdls{k})
+        printPoly(g_mdls{k}, varNames_g, sprintf('P (工况 %d)', k));
+    end
+end
+
+%% R² 汇总
+fprintf('\n========== R² 汇总 ==========\n');
+if exist('R2_f', 'var')
+    fprintf('f (η, poly):  训练R²=%.4f  测试R²=%.4f  Δ=%.4f  RMSE=%.4f\n', ...
+        R2_train_f, R2_f, deltaR2_f, RMSE_f);
+end
+
+diary off;
+fprintf('\n完成。\n');
+
+%% ============================================================
+%%  局部函数
+%% ============================================================
+
+function plotF_poly_figs(mdl, X_test, y_test, X_train, varNames_f, outDir)
+    y_pred = predict(mdl, X_test);
+    res = y_test - y_pred;
+    R2 = 1 - sum(res.^2) / sum((y_test - mean(y_test)).^2);
+    RMSE = sqrt(mean(res.^2));
+
+    % 图 1：预测 vs 实测
+    fig = figure('Name', 'f 模型 (Poly)：η 预测 vs 实测', 'Position', [50, 50, 600, 550]);
+    scatter(y_test, y_pred, 8, [0.2 0.4 0.7], 'filled', 'MarkerFaceAlpha', 0.3);
+    hold on;
+    lims = [min([y_test; y_pred]), max([y_test; y_pred])];
+    plot(lims, lims, 'k--', 'LineWidth', 1); hold off;
+    xlabel('实测 $\eta$ (%)'); ylabel('预测 $\eta$ (%)');
+    grid on; axis equal tight;
+    text(0.05, 0.95, sprintf('R^2 = %.4f\nRMSE = %.4f', R2, RMSE), ...
+        'Units', 'normalized', 'VerticalAlignment', 'top', 'FontSize', 10);
+    saveCurrent(fig, 'f_pred_vs_actual', outDir);
+
+    % 图 2：残差直方图
+    fig = figure('Name', 'f 模型 (Poly)：残差分布', 'Position', [100, 100, 500, 400]);
+    histogram(res, 40, 'FaceColor', [0.2 0.4 0.7], 'EdgeColor', 'none');
+    hold on; xline(0, 'k--', 'LineWidth', 1); hold off;
+    xlabel('残差 $\eta$ (%)'); ylabel('频数');
+    text(0.05, 0.95, sprintf('\\mu = %.4f\n\\sigma = %.4f', mean(res), std(res)), ...
+        'Units', 'normalized', 'VerticalAlignment', 'top', 'FontSize', 9);
+    grid on;
+    saveCurrent(fig, 'f_oob_residuals', outDir);
+
+    % 图 3：系数 t 统计量（替代 RF 的重要性）
+    fig = figure('Name', 'f 模型 (Poly)：系数 |t| 统计量', 'Position', [150, 150, 700, 420]);
+    coefNames = mdl.CoefficientNames;
+    tStats = abs(mdl.Coefficients.tStat);
+    coefNames = coefNames(2:end); tStats = tStats(2:end);
+    [~, ord] = sort(tStats, 'descend');
+    bar(tStats(ord), 'FaceColor', [0.2 0.4 0.7]);
+    nShow = min(15, length(coefNames));
+    set(gca, 'XTick', 1:nShow, 'XTickLabel', coefNames(ord(1:nShow)));
+    xtickangle(45);
+    ylabel('|t| 统计量'); grid on;
+    saveCurrent(fig, 'f_importance', outDir);
+end
+
+function plotG_poly_figs(g_mdls, idx, kOpt, X_g_all, y_g_all, centers_H, centers_C, varNames_g, outDir)
+    for cluster = 1:kOpt
+        g_mdl = g_mdls{cluster};
+        if isempty(g_mdl), continue; end
+        mask = idx == cluster;
+        X_k = X_g_all(mask, :); y_k = y_g_all(mask);
+        ok = all(isfinite(X_k), 2) & isfinite(y_k);
+        X_k = X_k(ok, :); y_k = y_k(ok);
+
+        rng(42 + cluster);
+        n_g = length(y_k);
+        nTrain_g = round(0.8 * n_g);
+        perm_g = randperm(n_g);
+        X_test_g = X_k(perm_g(nTrain_g+1:end), :); y_test_g = y_k(perm_g(nTrain_g+1:end));
+
+        y_pred = predict(g_mdl, X_test_g);
+        res = y_test_g - y_pred;
+        R2 = 1 - sum(res.^2) / sum((y_test_g - mean(y_test_g)).^2);
+        RMSE = sqrt(mean(res.^2));
+
+        % 图 1：预测 vs 实测
+        fig = figure('Name', sprintf('g%d (Poly)：P 预测 vs 实测', cluster), ...
+            'Position', [50, 50, 600, 550]);
+        scatter(y_test_g, y_pred, 8, [0.8 0.3 0.2], 'filled', 'MarkerFaceAlpha', 0.3);
+        hold on;
+        lims_g = [min([y_test_g; y_pred]), max([y_test_g; y_pred])];
+        plot(lims_g, lims_g, 'k--', 'LineWidth', 1); hold off;
+        xlabel('实测 $P$ (kW)'); ylabel('预测 $P$ (kW)');
+        text(0.05, 0.95, sprintf('R^2 = %.4f\nRMSE = %.4f', R2, RMSE), ...
+            'Units', 'normalized', 'VerticalAlignment', 'top', 'FontSize', 10);
+        grid on; axis equal tight;
+        saveCurrent(fig, sprintf('g%d_pred_vs_actual', cluster), outDir);
+
+        % 图 2：系数 |t|
+        fig = figure('Name', sprintf('g%d (Poly)：系数 |t| 统计量', cluster), ...
+            'Position', [150, 150, 500, 380]);
+        coefNames = g_mdl.CoefficientNames;
+        tStats = abs(g_mdl.Coefficients.tStat);
+        coefNames = coefNames(2:end); tStats = tStats(2:end);
+        [~, ord] = sort(tStats, 'descend');
+        bar(tStats(ord), 'FaceColor', [0.8 0.3 0.2]);
+        set(gca, 'XTick', 1:length(coefNames), 'XTickLabel', coefNames(ord));
+        xtickangle(45);
+        ylabel('|t| 统计量'); grid on;
+        saveCurrent(fig, sprintf('g%d_importance', cluster), outDir);
+
+        % 图 3：残差直方图
+        fig = figure('Name', sprintf('g%d (Poly)：残差分布', cluster), ...
+            'Position', [100, 100, 500, 400]);
+        histogram(res, 30, 'FaceColor', [0.8 0.3 0.2], 'EdgeColor', 'none');
+        hold on; xline(0, 'k--', 'LineWidth', 1); hold off;
+        xlabel('残差 $P$ (kW)'); ylabel('频数');
+        text(0.05, 0.95, sprintf('\\mu = %.4f\n\\sigma = %.4f', mean(res), std(res)), ...
+            'Units', 'normalized', 'VerticalAlignment', 'top', 'FontSize', 9);
+        grid on;
+        saveCurrent(fig, sprintf('g%d_oob_residuals', cluster), outDir);
+    end
+end
+
+function printPoly(mdl, varNames, yLabel)
+    % 打印多项式系数，将 x1,x2,... 映射回可读变量名
+    coefTbl = mdl.Coefficients;
+    rawNames = coefTbl.Row;
+    est   = coefTbl.Estimate;
+    se    = coefTbl.SE;
+    tStat = coefTbl.tStat;
+    pVal  = coefTbl.pValue;
+
+    readable = rawNames;
+    for i = length(varNames):-1:1
+        readable = regexprep(readable, ['\<x' num2str(i) '\>'], varNames{i});
+    end
+    readable = regexprep(readable, ':|\*', '·');
+    readable = regexprep(readable, '\^2', '²');
+    readable = regexprep(readable, '\(Intercept\)', '截距');
+    readable = regexprep(readable, '\$', '');
+
+    fprintf('\n--- %s ---\n', yLabel);
+    fprintf('%-32s %12s %10s %10s %10s\n', '项', '估计值', 'SE', 't', 'p');
+    fprintf('%s\n', repmat('-', 1, 78));
+    for r = 1:length(est)
+        stars = '';
+        if     pVal(r) < 0.001, stars = ' ***';
+        elseif pVal(r) < 0.01,  stars = ' **';
+        elseif pVal(r) < 0.05,  stars = ' *';
+        end
+        fprintf('%-28s %+12.6f %10.4f %+10.4f %10.2e%s\n', ...
+            readable{r}, est(r), se(r), tStat(r), pVal(r), stars);
+    end
+    fprintf('R² = %.4f,  RMSE = %.4f\n', mdl.Rsquared.Ordinary, mdl.RMSE);
+    fprintf('\n');
+end
+\end{lstlisting}
+
+% ----- 第二问：诊断 -----
+\paragraph{dream.m}\quad 证明现有装备不可能达标。
+
+\begin{lstlisting}[language=Matlab, caption={dream.m\quad 证明现有装备不可能达标}, label={code:dream}]
+%% dream.m — "梦想情景"：用历史最优 η 和最低 C 能否达标？
+%  C_out = C × 1000 × (1 − η/100)   （C: g/Nm³, C_out: mg/Nm³）
+%  国标: C_out ≤ 10 mg/Nm³
+clear;clc;close all;
+
+load('dc.mat', 'data_clean');
+load('dkmeans.mat', 'idx', 'kOpt', 'centers_H', 'centers_C');
+
+%% 变量准备
+C_in  = data_clean.C_in_gNm3;
+eta   = data_clean.eff;
+ok    = isfinite(C_in) & isfinite(eta) & isfinite(data_clean.P_total_kW);
+C_in  = C_in(ok);
+eta   = eta(ok);
+idx   = idx(ok);
+fprintf('有效样本: %d\n', sum(ok));
+
+%% 历史全局极值
+eta_max_global = max(eta);
+C_min_global   = min(C_in);
+fprintf('\n历史全局最大 η = %.4f%%\n', eta_max_global);
+fprintf('历史全局最小 C = %.4f g/Nm³\n', C_min_global);
+
+%% 梦想情景计算
+C_out_dream_global = C_min_global * 1000 * (1 - eta_max_global / 100);
+fprintf('\n═══════════════════════════════════════\n');
+fprintf('  「梦想情景」：min C + max η\n');
+fprintf('  C_out = %.4f × 1000 × (1 − %.4f/100)\n', C_min_global, eta_max_global);
+fprintf('       = %.4f mg/Nm³\n', C_out_dream_global);
+if C_out_dream_global <= 10
+    fprintf('  ✅ 达标！\n');
+else
+    fprintf('  ❌ 仍超标 %.2f mg/Nm³\n', C_out_dream_global - 10);
+end
+fprintf('═══════════════════════════════════════\n');
+
+%% 要达到 C_out=10，需要多大的 η？
+fprintf('\n——— 达标所需 η（各工况）———\n');
+fprintf('  C_out = C × 1000 × (1 − η/100) ≤ 10\n');
+fprintf('  → η ≥ (1 − 10/(C×1000)) × 100\n\n');
+for k = 1:kOpt
+    C_k = centers_C(k);
+    eta_need = (1 - 10 / (C_k * 1000)) * 100;
+    mask_k = idx == k;
+    eta_max_k = max(eta(mask_k));
+    fprintf('  工况 %d (C=%.2f g/Nm³): 需要 η ≥ %.4f%%,  历史最大 η = %.4f%%', ...
+        k, C_k, eta_need, eta_max_k);
+    if eta_max_k >= eta_need
+        fprintf('  ✅');
+    else
+        fprintf('  ❌ 差 %.4f 百分点', eta_need - eta_max_k);
+    end
+    fprintf('\n');
+end
+
+%% 全局反算
+eta_need_global = (1 - 10 / (C_min_global * 1000)) * 100;
+fprintf('\n——— 全局反算 ———\n');
+fprintf('  若 C = %.4f (全局最小), 需 η ≥ %.4f%% 才能达标\n', C_min_global, eta_need_global);
+fprintf('  历史最大 η = %.4f%%, 差距 = %.4f 百分点\n', eta_max_global, eta_need_global - eta_max_global);
+
+%% 分工况梦想情景
+fprintf('\n——— 分工况梦想情景 (min C_k + max η_global) ———\n');
+for k = 1:kOpt
+    mask_k = idx == k;
+    C_min_k = min(C_in(mask_k));
+    C_out_dream_k = C_min_k * 1000 * (1 - eta_max_global / 100);
+    fprintf('  工况 %d: min C = %.4f, dream C_out = %.4f mg/Nm³', ...
+        k, C_min_k, C_out_dream_k);
+    if C_out_dream_k <= 10
+        fprintf('  ✅');
+    else
+        fprintf('  ❌ +%.2f', C_out_dream_k - 10);
+    end
+    fprintf('\n');
+end
+
+%% 实际点中 C_out 的分布
+C_out_all = C_in * 1000 .* (1 - eta / 100);
+fprintf('\n——— 历史 C_out 分布 ———\n');
+fprintf('  min  = %.4f mg/Nm³\n', min(C_out_all));
+fprintf('  max  = %.4f mg/Nm³\n', max(C_out_all));
+fprintf('  mean = %.4f mg/Nm³\n', mean(C_out_all));
+fprintf('  std  = %.4f mg/Nm³\n', std(C_out_all));
+nUnder10 = sum(C_out_all <= 10);
+fprintf('  ≤10 mg/Nm³ 的点: %d / %d (%.2f%%)\n', nUnder10, length(C_out_all), 100*nUnder10/length(C_out_all));
+
+%% 散点图
+outDir = fullfile('img', 'dream');
+if ~exist(outDir, 'dir'), mkdir(outDir); end
+
+fig = figure('Name', 'C vs C_out — 梦想情景', 'Position', [50, 50, 800, 600]);
+scatter(C_in, C_out_all, 5, eta, 'filled', 'MarkerFaceAlpha', 0.15);
+colormap jet; cb = colorbar; cb.Label.String = '\eta (%)';
+hold on;
+yline(10, 'r--', 'LineWidth', 1.5);
+plot(C_min_global, C_out_dream_global, 'r*', 'MarkerSize', 14, 'LineWidth', 1.5);
+text(C_min_global, C_out_dream_global, ...
+    sprintf('  梦想点\n  C=%.2f, η=%.2f%%\n  C_{out}=%.2f', ...
+    C_min_global, eta_max_global, C_out_dream_global), ...
+    'VerticalAlignment', 'bottom', 'FontSize', 9, 'Color', 'r');
+xlabel('C_{in} (g/Nm³)');
+ylabel('C_{out} (mg/Nm³)');
+title('即使梦想组合也难达标');
+grid on;
+saveCurrent(fig, 'dream_C_vs_Cout', outDir);
+
+fprintf('\n完成。\n');
+\end{lstlisting}
+
+% ----- 第二问：优化 -----
+\paragraph{pro2opt.m}\quad 单目标网格搜索。
+
+\begin{lstlisting}[language=Matlab, caption={pro2opt.m\quad 单目标网格搜索}, label={code:pro2opt}]
+%% 第二问：网格搜索优化
+%  对各工况，在数据范围内搜索 [Ū₁, Ū₂, T̄₁, T̄₂]
+%  使 P 最小，同时满足 η ≥ 100 - 1/Cₖ
+%  方法：粗搜 (20⁴) → 局域加密 (20⁴)
+clear;clc;close all;
+
+if isfile('pro2opt.txt'), delete('pro2opt.txt'); end
+diary('pro2opt.txt');
+
+%% 加载模型与数据
+if ~isfile('rf_models.mat')
+    error('rf_models.mat 不存在，请先运行 pro2RF.m');
+end
+load('rf_models.mat', 'f_model', 'g_models', 'varNames_f', 'varNames_g', 'nTrees', ...
+    'centers_H', 'centers_C', 'kOpt');
+load('dc.mat', 'data_clean');
+load('dkmeans.mat', 'idx');
+
+fprintf('===== 第二问：网格搜索优化 =====\n\n');
+
+%% 变量合并
+Ubar1 = (data_clean.U1_kV + data_clean.U2_kV) / 2;
+Ubar2 = (data_clean.U3_kV + data_clean.U4_kV) / 2;
+Tbar1 = (data_clean.T1_s  + data_clean.T2_s)  / 2;
+Tbar2 = (data_clean.T3_s  + data_clean.T4_s)  / 2;
+H_all = data_clean.Temp_C;
+C_all = data_clean.C_in_gNm3;
+Q_all = data_clean.Q_Nm3h;
+
+%% 优化参数
+nGridCoarse = 20;
+nGridFine   = 20;
+fineRange   = 0.10;
+
+%% 对每个工况进行网格搜索
+results = cell(kOpt, 1);
+
+for cluster = 1:kOpt
+    fprintf('\n========== 工况 %d ==========\n', cluster);
+    fprintf('中心: H = %.1f °C, C = %.2f g/Nm³\n', centers_H(cluster), centers_C(cluster));
+
+    mask = idx == cluster;
+    H_k = centers_H(cluster);
+    C_k = centers_C(cluster);
+    Q_k = mean(Q_all(mask), 'omitnan');
+    fprintf('Q 中心 = %.1f Nm³/h\n', Q_k);
+
+    Ubar1_min = min(Ubar1(mask)); Ubar1_max = max(Ubar1(mask));
+    Ubar2_min = min(Ubar2(mask)); Ubar2_max = max(Ubar2(mask));
+    Tbar1_min = min(Tbar1(mask)); Tbar1_max = max(Tbar1(mask));
+    Tbar2_min = min(Tbar2(mask)); Tbar2_max = max(Tbar2(mask));
+
+    fprintf('变量范围:\n');
+    fprintf('  Ū₁: [%.1f, %.1f] kV\n', Ubar1_min, Ubar1_max);
+    fprintf('  Ū₂: [%.1f, %.1f] kV\n', Ubar2_min, Ubar2_max);
+    fprintf('  T̄₁: [%.0f, %.0f] s\n', Tbar1_min, Tbar1_max);
+    fprintf('  T̄₂: [%.0f, %.0f] s\n', Tbar2_min, Tbar2_max);
+
+    eta_min = 100 - 1 / C_k;
+    fprintf('约束: η ≥ %.4f%%  (C_out ≤ 10 mg/Nm³)\n', eta_min);
+
+    % 粗搜
+    fprintf('粗搜 (%d^4 = %d 候选点)...\n', nGridCoarse, nGridCoarse^4);
+    tic;
+    [X_coarse, P_coarse, eta_coarse, nFeas_c] = gridSearch(...
+        [Ubar1_min, Ubar1_max], [Ubar2_min, Ubar2_max], ...
+        [Tbar1_min, Tbar1_max], [Tbar2_min, Tbar2_max], nGridCoarse, ...
+        f_model, g_models{cluster}, H_k, C_k, Q_k, eta_min);
+    t_coarse = toc;
+
+    fprintf('  耗时 %.1f s, 可行点: %d / %d (%.1f%%)\n', ...
+        t_coarse, nFeas_c, nGridCoarse^4, 100*nFeas_c/nGridCoarse^4);
+    fprintf('  粗搜最优: Ū₁=%.2f, Ū₂=%.2f, T̄₁=%.1f, T̄₂=%.1f\n', X_coarse);
+    fprintf('            P=%.2f kW, η=%.4f%%\n', P_coarse, eta_coarse);
+
+    % 局域加密
+    u1_fine = [max(Ubar1_min, X_coarse(1)*(1-fineRange)), min(Ubar1_max, X_coarse(1)*(1+fineRange))];
+    u2_fine = [max(Ubar2_min, X_coarse(2)*(1-fineRange)), min(Ubar2_max, X_coarse(2)*(1+fineRange))];
+    t1_fine = [max(Tbar1_min, X_coarse(3)*(1-fineRange)), min(Tbar1_max, X_coarse(3)*(1+fineRange))];
+    t2_fine = [max(Tbar2_min, X_coarse(4)*(1-fineRange)), min(Tbar2_max, X_coarse(4)*(1+fineRange))];
+
+    fprintf('加密搜索 (%d^4)...\n', nGridFine);
+    tic;
+    [X_fine, P_fine, eta_fine, nFeas_f] = gridSearch(...
+        u1_fine, u2_fine, t1_fine, t2_fine, nGridFine, ...
+        f_model, g_models{cluster}, H_k, C_k, Q_k, eta_min);
+    t_fine = toc;
+
+    fprintf('  耗时 %.1f s, 可行点: %d / %d (%.1f%%)\n', ...
+        t_fine, nFeas_f, nGridFine^4, 100*nFeas_f/nGridFine^4);
+    fprintf('  加密最优: Ū₁=%.2f, Ū₂=%.2f, T̄₁=%.1f, T̄₂=%.1f\n', X_fine);
+    fprintf('            P=%.2f kW, η=%.4f%%\n', P_fine, eta_fine);
+
+    results{cluster} = struct(...
+        'cluster', cluster, ...
+        'H_center', H_k, 'C_center', C_k, 'Q_center', Q_k, ...
+        'eta_min', eta_min, ...
+        'Ubar1_opt', X_fine(1), 'Ubar2_opt', X_fine(2), ...
+        'Tbar1_opt', X_fine(3), 'Tbar2_opt', X_fine(4), ...
+        'P_min', P_fine, 'eta_opt', eta_fine, ...
+        'Ubar1_range', [Ubar1_min, Ubar1_max], ...
+        'Ubar2_range', [Ubar2_min, Ubar2_max], ...
+        'Tbar1_range', [Tbar1_min, Tbar1_max], ...
+        'Tbar2_range', [Tbar2_min, Tbar2_max]);
+end
+
+%% 结果汇总
+fprintf('\n\n');
+fprintf('╔══════════════════════════════════════════════════════════════════════════════╗\n');
+fprintf('║                        第二问优化结果汇总表                                  ║\n');
+fprintf('╠══════╤════════╤════════╤════════╤════════╤════════╤════════╤════════╤══════╣\n');
+fprintf('║ 工况 │  H(°C) │ C(g/m³)│Ū₁(kV) │Ū₂(kV) │T̄₁(s)  │T̄₂(s)  │P_min(kW)│ η(%) ║\n');
+fprintf('╟──────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼──────╢\n');
+
+for k = 1:kOpt
+    r = results{k};
+    fprintf('║  %d   │ %6.1f │ %6.2f │ %6.2f │ %6.2f │ %6.0f │ %6.0f │ %7.2f │%6.2f ║\n', ...
+        r.cluster, r.H_center, r.C_center, ...
+        r.Ubar1_opt, r.Ubar2_opt, r.Tbar1_opt, r.Tbar2_opt, ...
+        r.P_min, r.eta_opt);
+end
+
+fprintf('╚══════╧════════╧════════╧════════╧════════╧════════╧════════╧════════╧══════╝\n');
+
+for k = 1:kOpt
+    r = results{k};
+    fprintf('\n工况 %d: H=%.1f°C, C=%.2f g/Nm³, Q=%.1f Nm³/h\n', ...
+        k, r.H_center, r.C_center, r.Q_center);
+    fprintf('  搜索范围:\n');
+    fprintf('    Ū₁ ∈ [%.1f, %.1f] kV\n', r.Ubar1_range);
+    fprintf('    Ū₂ ∈ [%.1f, %.1f] kV\n', r.Ubar2_range);
+    fprintf('    T̄₁ ∈ [%.0f, %.0f] s\n', r.Tbar1_range);
+    fprintf('    T̄₂ ∈ [%.0f, %.0f] s\n', r.Tbar2_range);
+    fprintf('  最优解:\n');
+    fprintf('    Ū₁ = %.2f kV, Ū₂ = %.2f kV\n', r.Ubar1_opt, r.Ubar2_opt);
+    fprintf('    T̄₁ = %.0f s, T̄₂ = %.0f s\n', r.Tbar1_opt, r.Tbar2_opt);
+    fprintf('    P_min = %.2f kW, η = %.4f%%\n', r.P_min, r.eta_opt);
+    fprintf('    约束 η ≥ %.4f%% → 边距 %.4f 百分点\n', r.eta_min, r.eta_opt - r.eta_min);
+end
+
+diary off;
+fprintf('\n完成。\n');
+
+%% 局部函数
+function [X_opt, P_opt, eta_opt, nFeas] = gridSearch(...
+        u1_range, u2_range, t1_range, t2_range, nPts, ...
+        f_model, g_model, H_k, C_k, Q_k, eta_min)
+
+    u1_v = linspace(u1_range(1), u1_range(2), nPts);
+    u2_v = linspace(u2_range(1), u2_range(2), nPts);
+    t1_v = linspace(t1_range(1), t1_range(2), nPts);
+    t2_v = linspace(t2_range(1), t2_range(2), nPts);
+
+    [G1, G2, G3, G4] = ndgrid(u1_v, u2_v, t1_v, t2_v);
+    nTotal = numel(G1);
+
+    X_f_all = [repmat([H_k, C_k, Q_k], nTotal, 1), G1(:), G2(:), G3(:), G4(:)];
+    eta_all = predict(f_model, X_f_all);
+
+    feasible = eta_all >= eta_min;
+    nFeas = sum(feasible);
+
+    if nFeas == 0
+        X_opt = [NaN, NaN, NaN, NaN];
+        P_opt = NaN;
+        eta_opt = NaN;
+        return;
+    end
+
+    X_g_feas = [G1(feasible), G2(feasible), G3(feasible), G4(feasible)];
+    P_feas = predict(g_model, X_g_feas);
+
+    [P_opt, idxMin] = min(P_feas);
+    X_opt = X_g_feas(idxMin, :);
+    eta_opt = eta_all(feasible);
+    eta_opt = eta_opt(idxMin);
+end
+\end{lstlisting}
+
+\paragraph{pro2opt_lease.m}\quad 双目标 Pareto。
+
+\begin{lstlisting}[language=Matlab, caption={pro2opt\_lease.m\quad 双目标Pareto优化}, label={code:pro2opt_lease}]
+%% pro2opt_lease.m — 双目标 Pareto 优化（无约束）
+%  min [P, C_out]  网格搜索 + Pareto 支配筛选
+%  f: η = RF (f_model) → C_out = C_k·1000·(1-η/100)
+%  g: P = Poly (g_mdls)
+%  缓存：opt_lease.mat + img/pro2opt_lease/*.fig
+clear;clc;close all;
+
+%% 缓存
+outDir = fullfile('img', 'pro2opt_lease');
+if ~exist(outDir, 'dir'), mkdir(outDir); end
+cacheFile = 'opt_lease.mat';
+
+figNames = {};
+for c = 1:4
+    figNames{end+1} = sprintf('pareto_cluster%d', c);
+end
+figNames{end+1} = 'pareto_combined';
+allFigsExist = all(cellfun(@(n) isfile(fullfile(outDir, [n '.fig'])), figNames));
+
+%% 加载模型与数据
+load('rf_models.mat', 'f_model');
+load('poly_models.mat', 'g_mdls');
+load('dkmeans.mat', 'idx', 'kOpt', 'centers_H', 'centers_C');
+load('dc.mat', 'data_clean');
+
+%% 变量
+Ubar1 = (data_clean.U1_kV + data_clean.U2_kV) / 2;
+Ubar2 = (data_clean.U3_kV + data_clean.U4_kV) / 2;
+Tbar1 = (data_clean.T1_s  + data_clean.T2_s)  / 2;
+Tbar2 = (data_clean.T3_s  + data_clean.T4_s)  / 2;
+Q_all = data_clean.Q_Nm3h;
+H_all = data_clean.Temp_C;
+C_all = data_clean.C_in_gNm3;
+P_all = data_clean.P_total_kW;
+eta_all = data_clean.eff;
+
+nGrid = 25;   % 每维 25 格 → 25^4 ≈ 39 万点/工况
+
+%% ============================================================
+%%  主流程
+%% ============================================================
+if allFigsExist
+    load(cacheFile, 'results');
+    fprintf('从缓存加载 (%s)。\n', cacheFile);
+    openCachedFigs();
+
+elseif isfile(cacheFile)
+    load(cacheFile, 'results');
+    fprintf('加载 %s，重新出图...\n', cacheFile);
+    plotPareto(results, Ubar1, Ubar2, Tbar1, Tbar2, P_all, ...
+        C_all, eta_all, idx, outDir);
+
+else
+    fprintf('从头网格搜索 (%d^4 = %d 候选/工况)...\n', nGrid, nGrid^4);
+    results = cell(kOpt, 1);
+    rng(42);
+
+    for cluster = 1:kOpt
+        mask = idx == cluster;
+        H_k = centers_H(cluster);
+        C_k = centers_C(cluster);
+        Q_k = mean(Q_all(mask), 'omitnan');
+
+        u1_lim = [min(Ubar1(mask)), max(Ubar1(mask))];
+        u2_lim = [min(Ubar2(mask)), max(Ubar2(mask))];
+        t1_lim = [min(Tbar1(mask)), max(Tbar1(mask))];
+        t2_lim = [min(Tbar2(mask)), max(Tbar2(mask))];
+
+        u1_v = linspace(u1_lim(1), u1_lim(2), nGrid);
+        u2_v = linspace(u2_lim(1), u2_lim(2), nGrid);
+        t1_v = linspace(t1_lim(1), t1_lim(2), nGrid);
+        t2_v = linspace(t2_lim(1), t2_lim(2), nGrid);
+        [G1, G2, G3, G4] = ndgrid(u1_v, u2_v, t1_v, t2_v);
+        nTotal = numel(G1);
+
+        % 预测 C_out（RF f model）
+        X_f = [repmat([H_k, C_k, Q_k], nTotal, 1), G1(:), G2(:), G3(:), G4(:)];
+        eta_pred = predict(f_model, X_f);
+        C_out_pred = C_k * 1000 * (1 - eta_pred / 100);
+
+        % 预测 P（Poly g model）
+        X_g = [G1(:), G2(:), G3(:), G4(:)];
+        g_mdl = g_mdls{cluster};
+        if isempty(g_mdl)
+            fprintf('  工况 %d: g 模型缺失，跳过\n', cluster);
+            results{cluster} = [];
+            continue;
+        end
+        P_pred = predict(g_mdl, X_g);
+
+        % Pareto 支配筛选
+        pareto_mask = nonDominated(P_pred, C_out_pred);
+        nPareto = sum(pareto_mask);
+
+        results{cluster} = struct(...
+            'cluster', cluster, ...
+            'H_center', H_k, 'C_center', C_k, 'Q_center', Q_k, ...
+            'U1_all', G1(:), 'U2_all', G2(:), 'T1_all', G3(:), 'T2_all', G4(:), ...
+            'P_all', P_pred, 'Cout_all', C_out_pred, ...
+            'P_pareto', P_pred(pareto_mask), ...
+            'Cout_pareto', C_out_pred(pareto_mask), ...
+            'U1_pareto', G1(pareto_mask), 'U2_pareto', G2(pareto_mask), ...
+            'T1_pareto', G3(pareto_mask), 'T2_pareto', G4(pareto_mask), ...
+            'u1_range', u1_lim, 'u2_range', u2_lim, ...
+            't1_range', t1_lim, 't2_range', t2_lim);
+
+        fprintf('  工况 %d: %d 候选 → %d Pareto (%d%%)\n', ...
+            cluster, nTotal, nPareto, round(100*nPareto/nTotal));
+    end
+
+    save(cacheFile, 'results');
+    fprintf('已保存 %s\n', cacheFile);
+    plotPareto(results, Ubar1, Ubar2, Tbar1, Tbar2, P_all, ...
+        C_all, eta_all, idx, outDir);
+end
+
+%% ============================================================
+%%  终端输出
+%% ============================================================
+fprintf('\n========== Pareto 前沿摘要 ==========\n');
+fprintf('(C_out = C×1000×(1−η/100), 理论min=0, 历史≈49–50)\n\n');
+fprintf('工况  H(°C)  C(g/Nm³)   C_out范围(mg/Nm³)   P范围(kW)     Pareto点数\n');
+fprintf('----  ------  ---------  ------------------  ------------  ------------\n');
+for k = 1:kOpt
+    r = results{k};
+    if isempty(r), continue; end
+    cout_min = min(r.Cout_pareto);
+    cout_max = max(r.Cout_pareto);
+    p_min = min(r.P_pareto);
+    p_max = max(r.P_pareto);
+    fprintf('  %d   %5.1f   %6.2f     [%6.4f, %6.4f]    [%6.0f, %6.0f]    %4d\n', ...
+        k, r.H_center, r.C_center, cout_min, cout_max, p_min, p_max, ...
+        length(r.P_pareto));
+end
+
+% 各工况 Pareto 两端点
+fprintf('\n========== 各工况 Pareto 两端（最佳 C_out vs 最佳 P）==========\n');
+for k = 1:kOpt
+    r = results{k};
+    if isempty(r), continue; end
+    [cout_min, idx_c] = min(r.Cout_pareto);
+    [p_min, idx_p] = min(r.P_pareto);
+    fprintf(['\n工况 %d (H≈%.1f, C≈%.2f):\n', ...
+        '  最小 C_out 端: Ū₁=%.2f, Ū₂=%.2f, T̄₁=%.1f, T̄₂=%.1f → ', ...
+        'C_out=%.4f, P=%.2f kW\n', ...
+        '  最小 P 端:    Ū₁=%.2f, Ū₂=%.2f, T̄₁=%.1f, T̄₂=%.1f → ', ...
+        'C_out=%.4f, P=%.2f kW\n'], ...
+        k, r.H_center, r.C_center, ...
+        r.U1_pareto(idx_c), r.U2_pareto(idx_c), ...
+        r.T1_pareto(idx_c), r.T2_pareto(idx_c), ...
+        cout_min, r.P_pareto(idx_c), ...
+        r.U1_pareto(idx_p), r.U2_pareto(idx_p), ...
+        r.T1_pareto(idx_p), r.T2_pareto(idx_p), ...
+        r.Cout_pareto(idx_p), p_min);
+end
+
+fprintf('\n完成。\n');
+
+%% ============================================================
+%%  精简结果：去掉 *_all 网格点，只保留 Pareto 前沿
+%% ============================================================
+results_frontier = stripResults(results);
+save('pareto_frontier.mat', 'results_frontier');
+fprintf('已保存 pareto_frontier.mat（仅 Pareto 前沿点，不含网格候选）。\n');
+
+%% ============================================================
+%%  局部函数
+%% ============================================================
+
+function results_frontier = stripResults(results)
+    kOpt = length(results);
+    results_frontier = cell(kOpt, 1);
+    dropFields = {'U1_all', 'U2_all', 'T1_all', 'T2_all', 'P_all', 'Cout_all'};
+    for k = 1:kOpt
+        r = results{k};
+        if isempty(r), continue; end
+        r = rmfield(r, intersect(fieldnames(r), dropFields));
+        results_frontier{k} = r;
+    end
+end
+
+function pareto_mask = nonDominated(P_vals, C_vals)
+    % 双目标最小化 Pareto 支配判别，O(n log n)
+    %  点 A 支配 B ⇔ P_A ≤ P_B 且 C_A ≤ C_B 且至少一个严格 <
+    n = length(P_vals);
+    [~, order] = sortrows([P_vals(:), C_vals(:)]);
+    P_sorted = P_vals(order);
+    C_sorted = C_vals(order);
+
+    pareto_sorted = false(n, 1);
+    pareto_sorted(1) = true;
+    best_C = C_sorted(1);
+
+    for i = 2:n
+        if C_sorted(i) < best_C
+            pareto_sorted(i) = true;
+            best_C = C_sorted(i);
+        end
+    end
+
+    pareto_mask = false(n, 1);
+    pareto_mask(order) = pareto_sorted;
+end
+
+function plotPareto(results, Ubar1, Ubar2, Tbar1, Tbar2, ...
+        P_all, C_all, eta_all, idx, outDir)
+    kOpt = length(results);
+
+    for k = 1:kOpt
+        r = results{k};
+        if isempty(r), continue; end
+
+        mask = idx == k;
+        ok = isfinite(eta_all) & isfinite(C_all);
+        mask = mask & ok;
+        C_out_hist = C_all(mask) * 1000 .* (1 - eta_all(mask) / 100);
+        P_hist     = P_all(mask);
+
+        fig = figure('Name', sprintf('Pareto 前沿 — 工况 %d', k), ...
+            'Position', [50, 50, 750, 560]);
+
+        scatter(r.Cout_all, r.P_all, 1, [0.75 0.75 0.75], 'filled', ...
+            'MarkerFaceAlpha', 0.04);
+        hold on;
+
+        scatter(C_out_hist, P_hist, 5, [0.2 0.5 0.8], 'filled', ...
+            'MarkerFaceAlpha', 0.12, 'DisplayName', '历史实测');
+
+        [c_sort, ord] = sort(r.Cout_pareto);
+        plot(c_sort, r.P_pareto(ord), 'r-o', 'LineWidth', 2.5, ...
+            'MarkerSize', 6, 'MarkerFaceColor', 'r', ...
+            'DisplayName', 'Pareto 前沿');
+
+        [~, idx_c] = min(r.Cout_pareto);
+        [~, idx_p] = min(r.P_pareto);
+        plot(r.Cout_pareto(idx_c), r.P_pareto(idx_c), 'rv', ...
+            'MarkerSize', 10, 'LineWidth', 1.5);
+        plot(r.Cout_pareto(idx_p), r.P_pareto(idx_p), 'rs', ...
+            'MarkerSize', 10, 'LineWidth', 1.5);
+
+        text(r.Cout_pareto(idx_c), r.P_pareto(idx_c), ...
+            sprintf('  最佳排放\n  C_{out}=%.4f\n  P=%.0f kW', ...
+            r.Cout_pareto(idx_c), r.P_pareto(idx_c)), ...
+            'FontSize', 8, 'VerticalAlignment', 'middle');
+        text(r.Cout_pareto(idx_p), r.P_pareto(idx_p), ...
+            sprintf('  最省电\n  C_{out}=%.4f\n  P=%.0f kW', ...
+            r.Cout_pareto(idx_p), r.P_pareto(idx_p)), ...
+            'FontSize', 8, 'VerticalAlignment', 'middle');
+
+        xlabel('C_{out} (mg/Nm³)');
+        ylabel('P (kW)');
+        title(sprintf('工况 %d: H≈%.1f°C, C≈%.2f g/Nm³, Q≈%.0f Nm³/h', ...
+            k, r.H_center, r.C_center, r.Q_center));
+        legend('Location', 'best');
+        grid on;
+        saveCurrent(fig, sprintf('pareto_cluster%d', k), outDir);
+    end
+
+    % 汇总图（subplot 顺序：(1,4;3,2)，高C在上行、低C在下行）
+    fig = figure('Name', 'Pareto 前沿汇总', 'Position', [50, 50, 1050, 850]);
+    colors = lines(kOpt);
+    subOrder = [1, 4, 3, 2];
+    for pos = 1:kOpt
+        k = subOrder(pos);
+        r = results{k};
+        if isempty(r), continue; end
+        subplot(2, 2, pos);
+
+        mask = idx == k;
+        ok = isfinite(eta_all) & isfinite(C_all);
+        mask = mask & ok;
+        C_out_hist = C_all(mask) * 1000 .* (1 - eta_all(mask) / 100);
+        P_hist = P_all(mask);
+
+        scatter(r.Cout_all, r.P_all, 1, [0.75 0.75 0.75], 'filled', ...
+            'MarkerFaceAlpha', 0.03);
+        hold on;
+        scatter(C_out_hist, P_hist, 3, [0.2 0.5 0.8], 'filled', ...
+            'MarkerFaceAlpha', 0.08);
+        [c_sort, ord] = sort(r.Cout_pareto);
+        plot(c_sort, r.P_pareto(ord), '-o', 'Color', colors(k,:), ...
+            'LineWidth', 1.8, 'MarkerSize', 3);
+        xlabel('C_{out} (mg/Nm³)'); ylabel('P (kW)');
+        title(sprintf('工况 %d (H≈%.1f, C≈%.2f)', k, r.H_center, r.C_center));
+        grid on;
+    end
+    saveCurrent(fig, 'pareto_combined', outDir);
+end
+
+function saveCurrent(fig, name, outDir)
+    saveas(fig, fullfile(outDir, [name '.svg']));
+    saveas(fig, fullfile(outDir, [name '.fig']));
+end
+
+function openCachedFigs()
+    outDir = fullfile('img', 'pro2opt_lease');
+    for c = 1:4
+        openfig(fullfile(outDir, sprintf('pareto_cluster%d.fig', c)), 'visible');
+    end
+    openfig(fullfile(outDir, 'pareto_combined.fig'), 'visible');
+end
+\end{lstlisting}
